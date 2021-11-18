@@ -1,0 +1,21 @@
+<div class="component" *ngIf="user === undefined">
+    <div class="lds-default">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="component" *ngIf="user !== undefined">
+    <h2>{{user?.firstName}} {{user?.lastName}}</h2>
+    <p>{{user?.emailAdress}}</p>
+</div>
+<a routerLink="../">Ga terug</a>

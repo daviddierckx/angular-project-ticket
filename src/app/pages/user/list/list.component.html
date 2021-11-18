@@ -1,0 +1,20 @@
+<div class="component">
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email adress</th>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users$ | async">
+                <th scope="row">{{user.id}}</th>
+                <td><a routerLink="{{user.id}}">{{user.firstName}}</a></td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.emailAdress}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

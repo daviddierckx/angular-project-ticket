@@ -12,5 +12,5 @@ import { Component } from '@angular/core'
   ]
 })
 export class LayoutComponent {
-  title = 'My App'
+  title = 'Festival App'
 }
