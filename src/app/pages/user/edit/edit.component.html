@@ -24,6 +24,17 @@
                 <input type="text" name="emailAdress" class="form-control" required [ngModel]="user.emailAdress" />
 
             </div>
+            <div class="form-group">
+                <label for="birthDate">Birth date</label>
+                <input type="date" name="birthDate" class="form-control" required [ngModel]="user.birthDate" />
+
+            </div>
+            <div class="form-group">
+                <label for="isAdmin">Admin?</label>
+                <br>
+                <input type="checkbox" name="isAdmin" required [ngModel]="user.isAdmin" />
+
+            </div>
             <button type="submit" class="btn btn-success">Save</button>
 
             <!-- <button (click)="saveUser()" class="btn btn-success">Submit</button>

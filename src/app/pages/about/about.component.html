@@ -5,77 +5,83 @@
       Deze applicatie is gemaakt in het kader van het vak 'Clientside web frameworks' van Avans Hogeschool
       Breda.
     </p>
-    <h3>Naam van jouw project</h3>
+    <h3>Festival App</h3>
     <p>
-      Hier beschrijft je wat je project inhoudt. Beschrijf ook de entiteiten/domeinobjecten die je gebruikt,
-      en benoem per entiteit de attributen met hun datatype.
+
+      Festival App is een applicatie waarmee je tickets voor een festival kan boeken. Je hebt de keuze om tickets te
+      boeken op basis van je favoriete artist of je favoriete genre. Deze app
+      zorgt ervoor dat een gebruiker zijn tickets makkelijk en overzichtelijk kan bijhouden.
+
     </p>
   </div>
   <div class="col-sm-6 col-md-4 col-lg-2">
     <div class="card">
       <div class="d-flex justify-content-center align-items-center">
-        <img
-          src="assets/images/person.png"
-          class="card-img-top rounded-circle border profile-pic"
-          alt="..."
-        />
+        <img src="assets/images/person.png" class="card-img-top rounded-circle border profile-pic" alt="..." />
       </div>
       <div class="card-body">
-        <h5 class="card-title">Jouw naam hier</h5>
-        <p class="card-text">Studentnummer: 12345678</p>
+        <h5 class="card-title">David Dierckx</h5>
+        <p class="card-text">Studentnummer: 2179446</p>
       </div>
     </div>
   </div>
 </div>
 
 <h3>Entiteiten</h3>
-<p>
-  Beschrijf hier jouw entiteiten, zodanig dat we de complexiteit en de onderlinge relaties ervan kunnen
-  beoordelen. Voeg ook een plaatje toe waarin je je datamodel visualiseert.
-</p>
 <div class="row">
   <div class="col-sm-12 col-md-4">
-    <p>Entiteit 1</p>
+    <p>Entiteit 1: User</p>
     <ul>
-      <li>naam: string</li>
-      <li>id: number</li>
+      <li>ID: number</li>
+      <li>FirstName: string</li>
+      <li>LastName: string</li>
       <li>birthdate: date</li>
-      <li>isSelected: boolean</li>
+      <li>isAdmin: boolean</li>
+
+      <li>Tickets: Array < Ticket>
+
+      </li>
     </ul>
   </div>
   <div class="col-sm-12 col-md-4">
-    <p>Entiteit 2</p>
+    <p>Entiteit 2: Tickets</p>
     <ul>
-      <li>naam: string</li>
-      <li>id: number</li>
-      <li>birthdate: date</li>
-      <li>isSelected: boolean</li>
+      <li>ID: number</li>
+      <li>FestivalID: number</li>
     </ul>
   </div>
   <div class="col-sm-12 col-md-4">
-    <p>Entiteit 3</p>
+    <p>Entiteit 3: Festival</p>
     <ul>
-      <li>naam: string</li>
-      <li>id: number</li>
-      <li>birthdate: date</li>
-      <li>isSelected: boolean</li>
+      <li>ID: number</li>
+      <li>Naam: string</li>
+      <li>MaxAantalBezoekers: number</li>
+      <li>ArtiestID: number</li>
+      <li>GenreID: number</li>
+
+    </ul>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <p>Entiteit 4: Genre</p>
+    <ul>
+      <li>ID: number</li>
+      <li>Naam: string</li>
+
+    </ul>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <p>Entiteit 5: Artiest</p>
+    <ul>
+      <li>ID: number</li>
+      <li>Naam: string</li>
+      <li>GenreID: number</li>
+
     </ul>
   </div>
 </div>
 
 <div class="row">
   <div class="col">
-    <img src="assets/images/voorbeeld-datamodel.png" alt="..." />
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <h3>Use Cases</h3>
-    <p>De applicatie biedt de volgende functionaliteit.</p>
-    <div *ngFor="let UC of useCases">
-      <app-usecase [useCase]="UC"></app-usecase>
-    </div>
-    <p>Vul hier zelf meer functionaliteit toe.</p>
+    <img style="width: 500px;" src="assets/images/Leeg diagram (3).png" alt="..." />
   </div>
 </div>

@@ -20,6 +20,8 @@ export class EditComponent implements OnInit {
     firstName: '',
     lastName: '',
     emailAdress: '',
+    birthDate: new Date(),
+    isAdmin: false
   }
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) { }
 
@@ -37,7 +39,9 @@ export class EditComponent implements OnInit {
       id: form.value.id,
       firstName: form.value.firstName,
       lastName: form.value.lastName,
-      emailAdress: form.value.emailAdress
+      emailAdress: form.value.emailAdress,
+      birthDate: form.value.birthDate,
+      isAdmin: form.value.isAdmin
     };
     console.log();
     this.userService.onUpdate(data)

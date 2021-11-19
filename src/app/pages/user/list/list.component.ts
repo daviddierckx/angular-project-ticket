@@ -14,6 +14,8 @@ export class ListComponent implements OnInit {
     firstName: '',
     lastName: '',
     emailAdress: '',
+    birthDate: new Date(),
+    isAdmin: false
   }
   submitted = false;
 
@@ -30,7 +32,9 @@ export class ListComponent implements OnInit {
       id: this.user.id,
       firstName: this.user.firstName,
       lastName: this.user.lastName,
-      emailAdress: this.user.emailAdress
+      emailAdress: this.user.emailAdress,
+      birthDate: this.user.birthDate,
+      isAdmin: this.user.isAdmin
     };
 
     this.userService.create(data)
@@ -51,6 +55,8 @@ export class ListComponent implements OnInit {
       firstName: '',
       lastName: '',
       emailAdress: '',
+      birthDate: new Date(),
+      isAdmin: false
     };
   }
 

@@ -11,15 +11,45 @@ export class UserService {
   users: User[] = [
     {
       id: 0,
-      firstName: "Jan",
-      lastName: "Jansen",
-      emailAdress: "j.jansen@server.nl"
+      firstName: "Peter",
+      lastName: "Jan",
+      emailAdress: "p.jan@server.nl",
+      birthDate: new Date('1988-03-21'),
+      isAdmin: false
+
+
     },
     {
       id: 1,
-      firstName: "Kees",
-      lastName: "Va Dijk",
-      emailAdress: "k.vandijk@server.nl"
+      firstName: "Hendrik",
+      lastName: "Verhees",
+      emailAdress: "h.verhees@server.nl",
+      birthDate: new Date('1989-08-11'),
+      isAdmin: false
+    },
+    {
+      id: 2,
+      firstName: "David",
+      lastName: "Bossche",
+      emailAdress: "d.bossche@server.nl",
+      birthDate: new Date('1994-04-01'),
+      isAdmin: false
+    },
+    {
+      id: 3,
+      firstName: "Bianca",
+      lastName: "Roos",
+      emailAdress: "b.roos@server.nl",
+      birthDate: new Date('2001-03-13'),
+      isAdmin: false
+    },
+    {
+      id: 4,
+      firstName: "David",
+      lastName: "Dierckx",
+      emailAdress: "d.dierckx@server.nl",
+      birthDate: new Date('1999-06-01'),
+      isAdmin: false
     },
 
   ]
@@ -28,7 +58,7 @@ export class UserService {
     return this.users.length;
   }
   getAll(): Observable<User[]> {
-    return of(this.users).pipe(delay(1500));
+    return of(this.users).pipe(delay(100));
   }
   getById(id: number): User {
     const result = this.users.filter(item => item.id === id)
@@ -53,6 +83,8 @@ export class UserService {
     oldUser!.firstName = user.firstName;
     oldUser!.lastName = user.lastName;
     oldUser!.emailAdress = user.emailAdress;
+    oldUser!.birthDate = user.birthDate;
+    oldUser!.isAdmin = user.isAdmin;
 
   }
 }

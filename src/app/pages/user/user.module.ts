@@ -19,6 +19,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule, FormsModule, RouterModule.forChild(routes)
-  ]
+  ],
+
 })
 export class UserModule { }
