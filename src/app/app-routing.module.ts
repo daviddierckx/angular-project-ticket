@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core'
+import { FormsModule } from '@angular/forms'
 import { Routes, RouterModule } from '@angular/router'
 import { DashboardComponent } from './core/dashboard/dashboard.component'
 import { LayoutComponent } from './core/layout/layout.component'

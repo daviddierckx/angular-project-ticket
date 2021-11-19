@@ -11,8 +11,8 @@ import { LayoutComponent } from './core/layout/layout.component'
 import { FooterComponent } from './core/footer/footer.component'
 import { AboutComponent } from './pages/about/about.component'
 import { UsecaseComponent } from './pages/about/usecases/usecase.component';
-import { UserModule } from './pages/user/user.module'
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { User } from './pages/user/user.model'
 @NgModule({
   declarations: [
     AppComponent,

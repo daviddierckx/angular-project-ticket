@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import * as fromComponents from "."
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: fromComponents.ListComponent },
-  { path: ':id', pathMatch: 'full', component: fromComponents.DetailComponent }
+  { path: ':id', pathMatch: 'full', component: fromComponents.DetailComponent },
+  { path: "edit/:id", pathMatch: 'full', component: fromComponents.EditComponent }
 ]
 
 @NgModule({
@@ -16,7 +18,7 @@ const routes: Routes = [
     // fromComponents.EditComponent
   ],
   imports: [
-    CommonModule, RouterModule.forChild(routes)
+    CommonModule, FormsModule, RouterModule.forChild(routes)
   ]
 })
 export class UserModule { }

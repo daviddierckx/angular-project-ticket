@@ -1,1 +1,39 @@
-<p>edit works!</p>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div style="width: 400px; margin: auto;">
+        <h5>Edit: {{user.emailAdress}}</h5>
+        <hr>
+        <div class="submit-form">
+            <!-- <div *ngIf="!submitted"> -->
+            <div class="form-group" style="display: none;">
+                <label for="ID">ID</label>
+                <input type="text" class="form-control" name="id" required [ngModel]="user.id" />
+
+            </div>
+            <div class="form-group">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" name="firstName" required [ngModel]="user.firstName" />
+
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" name="lastName" required [ngModel]="user.lastName" />
+
+            </div>
+            <div class="form-group">
+                <label for="emailAdress">Email adress</label>
+                <input type="text" name="emailAdress" class="form-control" required [ngModel]="user.emailAdress" />
+
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+
+            <!-- <button (click)="saveUser()" class="btn btn-success">Submit</button>
+            </div>
+
+            <!-- <div *ngIf="submitted">
+                <h4>You added successfully!</h4>
+                <button class="btn btn-success" (click)="newUser()">Add</button>
+            </div> -->
+
+        </div>
+    </div>
+</form>
