@@ -24,6 +24,8 @@ export class EditComponent implements OnInit {
     isUnderAge: false,
     Date: new Date()
   }
+  subscriptionOptions: Subscription;
+  subscriptionParams: Subscription;
   constructor(private router: Router, private route: ActivatedRoute, private festivalService: FestivalService) { }
 
   ngOnInit(): void {
