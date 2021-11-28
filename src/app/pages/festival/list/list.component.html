@@ -1,33 +1,37 @@
 <!-- Button trigger modal -->
-<h3 style="display: inline-block;">User List</h3>
+<h3 style="display: inline-block;">Festival List</h3>
 <button type="button" class="btn btn-success" style="margin-bottom: 20px; display: inline-block; float: right;"
     data-toggle="modal" data-target="#exampleModal">
-    Add User
+    Add Festival
 </button>
 
 <div class="component">
     <table class="table">
         <thead>
             <th>ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Email adress</th>
-            <th>Birth date</th>
+            <th>Naam</th>
+            <th>Max aantal bezoekers</th>
+            <th>Artiesten</th>
+            <th>Underage party?</th>
+            <th>Date</th>
             <th>Actions</th>
         </thead>
         <tbody>
-            <tr *ngFor="let user of users$ | async">
-                <th scope="row">{{user.id}}</th>
-                <td>{{user.firstName}}</td>
-                <td>{{user.lastName}}</td>
-                <td>{{user.emailAdress}}</td>
-                <td>{{user.birthDate | date: 'dd-MM-YYYY'}}</td>
+            <tr *ngFor="let festival of festivals$ | async">
+                <th scope="row">{{festival.id}}</th>
+                <td>{{festival.Naam}}</td>
+                <td>{{festival.MaxAantalBezoekers}}</td>
+                <td>
+                    {{festival.Artiesten}}
+                </td>
+                <td>{{festival.isUnderAge}}</td>
+                <td>{{festival.Date | date: 'dd-MM-YYYY'}}</td>
                 <td>
                     <button style="margin-right: 10px;" class="btn btn-primary"><a style="color: white;"
-                            routerLink="{{user.id}}">Details</a></button>
+                            routerLink="{{festival.id}}">Details</a></button>
                     <button style="margin-right: 10px;" class="btn btn-primary"><a style="color: white;"
-                            [routerLink]="['edit', user.id]">Edit</a></button>
-                    <button class="btn btn-danger" (click)="onDelete(user)">Delete</button>
+                            [routerLink]="['edit', festival.id]">Edit</a></button>
+                    <button class="btn btn-danger" (click)="onDelete(festival)">Delete</button>
                 </td>
 
             </tr>
@@ -43,7 +47,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Festival</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -55,31 +59,38 @@
                             <div *ngIf="!submitted">
                                 <div class="form-group" style="display: none;">
                                     <label for="ID">ID</label>
-                                    <input type="text" class="form-control" name="id" required [(ngModel)]="user.id" />
+                                    <input type="text" class="form-control" name="id" required
+                                        [(ngModel)]="festival.id" />
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="firstName">First name</label>
-                                    <input type="text" class="form-control" name="firstName" required
-                                        [(ngModel)]="user.firstName" />
+                                    <label for="Naam">Naam</label>
+                                    <input type="text" class="form-control" name="Naam" required
+                                        [(ngModel)]="festival.Naam" />
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="lastName">Last name</label>
-                                    <input type="text" class="form-control" name="lastName" required
-                                        [(ngModel)]="user.lastName" />
+                                    <label for="MaxAantalBezoekers">Max aantal bezoekers</label>
+                                    <input type="text" class="form-control" name="MaxAantalBezoekers" required
+                                        [(ngModel)]="festival.MaxAantalBezoekers" />
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="emailAdress">Email adress</label>
-                                    <input type="text" name="emailAdress" class="form-control" required
-                                        [(ngModel)]="user.emailAdress" />
+                                    <label for="Artiesten">Artiesten </label>
+                                    <input type="text" name="Artiesten" class="form-control" required
+                                        [(ngModel)]="festival.Artiesten" />
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="birthDate">Birth date</label>
-                                    <input type="date" name="birthDate" class="form-control" required
-                                        [(ngModel)]="user.birthDate" />
+                                    <label for="isUnderAge">isUnderAge</label>
+                                    <input checked name="isUnderAge" class="form-control" required
+                                        [(ngModel)]="festival.isUnderAge" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Date"> date</label>
+                                    <input type="date" name="Date" class="form-control" required
+                                        [(ngModel)]="festival.Date" />
 
                                 </div>
 

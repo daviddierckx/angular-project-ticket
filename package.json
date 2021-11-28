@@ -10,7 +10,7 @@
   ],
   "main": "src/server.js",
   "author": {
-    "name": "Robin Schellius"
+    "name": "David Dierckx"
   },
   "scripts": {
     "ng": "ng",

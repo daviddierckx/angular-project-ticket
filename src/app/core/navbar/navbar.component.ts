@@ -38,6 +38,16 @@ import { Component, Input, OnInit } from '@angular/core'
               <a class="nav-link" routerLink="/" [routerLinkActive]="['active']">Home</a>
             </li>
             <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="festivals"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+              tabindex="-1"
+              >Festivals</a
+            >
+          </li>
+            <li class="nav-item">
               <a
                 class="nav-link"
                 routerLink="users"

@@ -17,6 +17,10 @@ const routes: Routes = [
       {
         path: 'users',
         loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule)
+      },
+      {
+        path: 'festivals',
+        loadChildren: () => import('./pages/festival/festival.module').then(m => m.FestivalModule)
       }
     ]
   },

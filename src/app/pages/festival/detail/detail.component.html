@@ -1,0 +1,27 @@
+<div class="component" *ngIf="festival === undefined">
+    <div class="lds-default">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="component" *ngIf="festival !== undefined">
+    <h2>{{festival?.Naam}}</h2>
+    <hr>
+    <!-- <p><strong>Artiesten: </strong> <span *ngFor="let item of festival.Artiesten">
+            {{item}} |
+        </span></p> -->
+    <p><strong>Artiesten: </strong> {{festival?.Artiesten }}</p>
+    <p><strong>Date: </strong> {{festival?.Date | date: 'dd-MM-YYYY'}}</p>
+
+</div>
+<a routerLink="../">Go back</a>
