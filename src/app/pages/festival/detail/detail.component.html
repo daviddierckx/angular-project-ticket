@@ -1,4 +1,4 @@
-<div class="component" *ngIf="festival === undefined">
+<div class="component" *ngIf="id === undefined">
     <div class="lds-default">
         <div></div>
         <div></div>
@@ -14,7 +14,7 @@
         <div></div>
     </div>
 </div>
-<div class="component" *ngIf="festival !== undefined">
+<div class="component" *ngIf="id !== undefined">
     <h2>{{festival?.Naam}}</h2>
     <hr>
     <!-- <p><strong>Artiesten: </strong> <span *ngFor="let item of festival.Artiesten">

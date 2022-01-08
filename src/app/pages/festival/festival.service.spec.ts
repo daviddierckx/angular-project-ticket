@@ -39,7 +39,7 @@ describe('FestivalService', () => {
   fit('should return a list of festivals', (done: DoneFn) => {
     httpSpy.get.and.returnValue(of(expectedFestivals));
 
-    service.getAll().subscribe((festival: Festival[]) => {
+    service.getAll().subscribe(function (festival: Festival[]) {
       console.log(festival);
       expect(festival.length).toBeGreaterThan(1);
       expect(festival[0].id).toEqual(expectedFestivals[0].id);

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import * as fromComponents from "."
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: fromComponents.ListComponent },
@@ -18,7 +18,7 @@ const routes: Routes = [
     // fromComponents.EditComponent
   ],
   imports: [
-    CommonModule, FormsModule, RouterModule.forChild(routes)
+    CommonModule, FormsModule, ReactiveFormsModule, RouterModule.forChild(routes)
   ],
 
 })

@@ -9,6 +9,7 @@ export const environment = {
 
   // Fill in your own local development server API url here
   apiUrl: 'https://localhost:3000',
+  SERVER_API_URL: 'https://localhost:3000/api',
 
   version: packagejson.version
 }

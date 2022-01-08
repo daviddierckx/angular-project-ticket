@@ -4,7 +4,7 @@ import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
 import { EditComponent } from './edit/edit.component';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -22,7 +22,7 @@ const routes: Routes = [
     EditComponent
   ],
   imports: [
-    CommonModule, FormsModule, RouterModule.forChild(routes)
+    CommonModule, FormsModule, ReactiveFormsModule, RouterModule.forChild(routes)
   ]
 })
 export class FestivalModule { }

@@ -1,0 +1,14 @@
+.order-header{
+    height: 15rem;
+    
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://www.groupito.com/blog/wp-content/uploads/2019/08/blog_festival.jpg);
+    background-position: bottom;
+    color:white;
+    text-align: center;
+    
+  }
+
+  .header-text{
+    position: relative;
+    top: 50%;
+  }

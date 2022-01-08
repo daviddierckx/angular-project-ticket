@@ -1,0 +1,30 @@
+<div class="component" *ngIf="id === undefined">
+    <div class="lds-default">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="component" *ngIf="id !== undefined">
+    <h2>{{artiest?.Naam}}</h2>
+    <hr>
+    <!-- <p><strong>Artiesten: </strong> <span *ngFor="let item of festival.Artiesten">
+            {{item}} |
+        </span></p> -->
+
+    <p style="display:inline-block"><strong>Genre: </strong> {{artiest?.Genre }}</p>
+    <div style=" text-align: right;" *ngIf="artiest.ImageUrl.length > 10">
+        <img style="width: 200px; " [src]="artiest.ImageUrl" />
+    </div>
+
+</div>
+<a routerLink="../">Go back</a>

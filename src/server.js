@@ -1,9 +1,28 @@
 const express = require('express')
 const path = require('path')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+
 const http = require('http')
 const compression = require('compression')
+const dotenv = require('dotenv')
 
 const app = express()
+app.use(bodyParser.json())
+app.use(cors());
+
+
+const connectDB = require('./config/db')
+//Routes
+app.use('/', require('./routes/index'));
+
+//Load Config
+dotenv.config({ path: './config/config.env' });
+
+connectDB();
+
+//PAS AAN NAAR 3000
+app.listen(3001)
 
 // Compress static assets to enhance performance.
 // Decrease the download size of your app through gzip compression:
@@ -32,12 +51,14 @@ const options = {
 app.use(express.static(path.join(__dirname, '..', 'dist', appname), options))
 
 // Catch all routes and return the index file
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'dist', appname, 'index.html'))
 })
 
 // Get port from environment and store in Express.
-const port = process.env.PORT || '4200'
+//process.env.PORT || 
+const port = '4200'
 app.set('port', port)
 // Create HTTP server.
 const server = http.createServer(app)
@@ -45,3 +66,4 @@ const server = http.createServer(app)
 server.listen(port, () => {
   console.log(`Angular app \'${appname}\' running in ${process.env.NODE_ENV} mode on port ${port}`)
 })
+

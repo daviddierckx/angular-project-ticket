@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Festival } from '../festival.model';
 import { FestivalService } from '../festival.service';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+
 
 @Component({
   selector: 'app-list',
@@ -9,24 +14,53 @@ import { FestivalService } from '../festival.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
-  festival: Festival = {
-    id: this.festivalService.getFestivalLength(),
-    Naam: '',
-    MaxAantalBezoekers: 0,
-    Artiesten: "",
-    isUnderAge: false,
-    Date: new Date()
-  }
+  form: FormGroup;
+  festival: any;
   submitted = false;
+  submitSucces = false;
+  @ViewChild('closeModal') closeModal: ElementRef
 
   festivals$: Observable<Festival[]>;
-  constructor(private festivalService: FestivalService) { }
+  constructor(private festivalService: FestivalService, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log('UserList geladen');
+    console.log('Festivals geladen');
+    this.createForm()
+    this.getFestivalData();
 
-    this.festivals$ = this.festivalService.getAll();
+  }
+  getFestivalData() {
+    this.festivalService.getAllFestivals().subscribe(res => {
+      console.log(res);
+      this.festival = res;
+    })
+  }
+  createForm() {
+    this.form = this.formBuilder.group({
+      Naam: ['', Validators.required],
+      MaxAantalBezoekers: ['', Validators.required],
+      Artiesten: ['', Validators.required],
+      isUnderage: ['', Validators.required],
+      Date: ['', Validators.required],
+      Price: ['', Validators.required]
+    })
+  }
+
+  get f() {
+    return this.form.controls;
+  }
+  insertData() {
+    this.submitted = true;
+    if (this.form.invalid) {
+      console.log('INVALID');
+      return;
+    }
+    this.submitSucces = true;
+
+    this.festivalService.insertData(this.form.value).subscribe(res => {
+      this.festival = res;
+      this.submitSucces = true;
+    })
   }
   saveUser(): void {
     const data = {
@@ -35,7 +69,8 @@ export class ListComponent implements OnInit {
       MaxAantalBezoekers: this.festival.MaxAantalBezoekers,
       Artiesten: this.festival.Artiesten,
       isUnderAge: this.festival.isUnderAge,
-      Date: this.festival.Date
+      Date: this.festival.Date,
+      Price: this.festival.Price
     };
 
     this.festivalService.create(data)
@@ -48,23 +83,23 @@ export class ListComponent implements OnInit {
           console.log(error);
         });
   }
-  currentFestival: Festival = this.festival;
   newUser(): void {
     this.submitted = false;
-    this.festival = {
-      id: this.festivalService.getFestivalLength(),
-      Naam: '',
-      MaxAantalBezoekers: 0,
-      Artiesten: "",
-      isUnderAge: false,
-      Date: new Date()
-    };
+    this.submitSucces = false;
+
   }
 
-  onDelete(festival: Festival) {
-    this.festivalService.delete(festival).subscribe(() => {
-      this.festivalService.festival = this.festivalService.festival.filter((t) => t.id !== festival.id)
+
+  onDelete(id: any) {
+    this.festivalService.DeleteDataById(id).subscribe(() => {
+      this.festivalService.festival = this.festivalService.festival.filter((t) => t.id !== id)
+      this.getFestivalData();
+
     })
+    this.getFestivalData();
   }
 
+  onAddArtist() {
+
+  }
 }

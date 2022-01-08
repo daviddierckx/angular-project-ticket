@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay, Observable, of, tap } from 'rxjs';
 import { Festival } from './festival.model';
@@ -13,7 +14,8 @@ export class FestivalService {
       MaxAantalBezoekers: 10000,
       Artiesten: "Lil kleine, Boef, Rare Akuma",
       isUnderAge: false,
-      Date: new Date('2021-03-21')
+      Date: new Date('2021-03-21'),
+      Price: 100
 
 
     },
@@ -23,8 +25,8 @@ export class FestivalService {
       MaxAantalBezoekers: 10000,
       Artiesten: "GRoef, Rare Akuma",
       isUnderAge: false,
-      Date: new Date('1988-03-21')
-
+      Date: new Date('1988-03-21'),
+      Price: 100
 
     },
     {
@@ -33,22 +35,44 @@ export class FestivalService {
       MaxAantalBezoekers: 10000,
       Artiesten: "Lil kleine, Boef, Rare Akuma",
       isUnderAge: false,
-      Date: new Date('1988-03-21')
+      Date: new Date('1988-03-21'),
+      Price: 100
     },
 
   ]
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
   getFestivalLength(): number {
     return this.festival.length;
   }
-  getAll(): Observable<Festival[]> {
-    return of(this.festival).pipe(delay(100));
+  getAllFestivals() {
+    return this.httpClient.get('http://localhost:3000/api/festival')
   }
+  insertData(data: any) {
+    return this.httpClient.post('http://localhost:3000/api/festival', data)
+  }
+
+  getDataById(id: any) {
+    return this.httpClient.get('http://localhost:3000/api/festival/' + id)
+
+  }
+
+  updateData(id: any, data: any) {
+    return this.httpClient.put('http://localhost:3000/api/festival/edit/' + id, data)
+  }
+  DeleteDataById(id: any) {
+    return this.httpClient.delete('http://localhost:3000/api/festival/' + id)
+
+  }
+
+  /////////////
   getById(id: number): Festival {
     const result = this.festival.filter(item => item.id === id)
 
     return result[0];
+  }
+  getAll(): Observable<Festival[]> {
+    return of(this.festival).pipe(delay(100));
   }
   delete(festival: Festival): Observable<Festival[]> {
     return of(this.festival.splice(festival.id, 1))

@@ -1,0 +1,213 @@
+<!-- Button trigger modal -->
+<div class="artiest-header">
+    <div class="header-text">
+        <h3 style="font-size: 42px; font-weight: bold;">Upcoming festival artists</h3>
+        <div style="text-align: right;">
+            <button type="button" class="btn btn-success" style="margin-bottom: 20px; margin-right: 50px; "
+                data-toggle="modal" data-target="#exampleModal">
+                Add Artiest
+            </button>
+        </div>
+    </div>
+</div>
+<!-- <div class="component">
+    <table class="table">
+        <thead>
+            <th scope="col">#</th>
+            <th>Naam</th>
+            <th>Genre</th>
+
+            <th>Actions</th>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let artiest of artiest; let i = index">
+                <td>{{ i + 1}}</td>
+
+                <td>{{artiest.Naam}}</td>
+                <td>{{artiest.Genre}}</td>
+                <button style="margin-right: 10px;" class="btn btn-primary" style="background-color: #007bff;"><a
+                        style="color: white;" routerLink="{{artiest._id}}">Details</a></button>
+                <button style="margin-right: 10px;" class="btn btn-primary" style="background-color: #007bff;"><a
+                        [routerLink]="['edit', artiest._id]" style="background-color: #007bff;"
+                        style="color: white;">Edit</a></button>
+                <button class="btn btn-danger" (click)="onDelete(artiest)"
+                    style="background-color: #dc3545;">Delete</button>
+
+            </tr>
+        </tbody>
+    </table>
+</div> -->
+
+<div *ngFor="let artiest of artiest; let i = index" style="display: inline-block;">
+
+
+
+    <div class="card" style="width: 16rem;margin: 10px;">
+        <img *ngIf="artiest.ImageUrl !== ''" class="card-img-top" style=" width: 100%;
+        height: 16vw;
+        object-fit: cover;" [src]="artiest.ImageUrl" alt="Card image cap">
+
+        <img *ngIf="artiest.ImageUrl === ''" class="card-img-top" style=" width: 100%;
+        height: 16vw;
+        object-fit: cover;"
+            src="https://artists.ludwig-musser.com/application/themes/ludwig_musser/assets/images/artist-list-default.jpg"
+            alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{artiest.Naam}}</h5>
+            <p class="card-text"><strong>Genre: </strong> {{artiest?.Genre }}</p>
+        </div>
+        <div class="card-body">
+            <button style="margin-right: 10px;" class="btn btn-primary"
+                style="background-color: #007bff;margin-right: 5px;"><a style="color: white;"
+                    routerLink="{{artiest._id}}">Details</a></button>
+            <button style="margin-right: 10px;" class="btn btn-primary"
+                style="background-color: #007bff;margin-right: 5px;"><a [routerLink]="['edit', artiest._id]"
+                    style="background-color: #007bff;" style="color: white; margin-right: 5px;">Edit</a></button>
+            <button class="btn btn-danger" (click)="onDelete(artiest._id)"
+                style="background-color: #dc3545;">Delete</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div #childModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Artiest</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="insertData()" [formGroup]="form">
+                    <div class="submit-form">
+
+                        <div class="form-group">
+                            <label for="Naam">Naam</label>
+                            <input type="text" formControlName="Naam" class="form-control"
+                                [ngClass]="{'is-invalid': submitted && f['Naam'].errors}" placeholder="Enter Name">
+
+                            <div *ngIf="submitted && f['Naam'].errors" class="invalid-feedback">
+                                <div *ngIf="f['Naam'].errors['required']">
+                                    Name is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Genre">Genre</label>
+                            <select formControlName="Genre" [ngClass]="{'is-invalid': submitted && f['Genre'].errors}"
+                                class="form-control">
+                                <option value="Pop">Pop</option>
+                                <option value="Rap" selected>Rap</option>
+                                <option value="House">House</option>
+                                <option value="Techno">Techno</option>
+                                <option value="Lofi">Lofi</option>
+                                <option value="Funk">Funk</option>
+
+                            </select>
+
+                            <div *ngIf="submitted && f['Genre'].errors" class="invalid-feedback">
+                                <div *ngIf="f['Genre'].errors['required']">
+                                    Genre is required
+                                </div>
+                                <div *ngIf="f['Genre'].errors['Genre']">
+                                    Genre must be valid
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ImageUrl">Image url</label>
+                                <input type="text" formControlName="ImageUrl" class="form-control"
+                                    placeholder="Enter Image url">
+
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <button #closeBtn class="btn btn-dark btn-sm">Submit</button>
+                            </div>
+                            <div *ngIf="submitSucces">
+                                <h4>You added successfully!</h4>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- <form (ngSubmit)="insertData()" [formGroup]="form">
+                    <div style="width: 400px; margin: auto;">
+                        <div class="submit-form">
+                            <div>
+                                <div class="form-group" style="display: none;">
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Naam">Naam</label>
+                                    <input type="text" formControlName="Naam" class="form-control"
+                                        [ngClass]="{'is-invalid': submitted && f['Naam'].errors}"
+                                        placeholder="Enter name">
+
+                                    <div *ngIf="submitted && f['Naam'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['Naam'].errors['required']">
+                                            Name is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="MaxAantalBezoekers">Max aantal bezoekers</label>
+                                    <input type="text" class="form-control" name="MaxAantalBezoekers" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Artiesten">Artiesten </label>
+                                    <input type="text" name="Artiesten" class="form-control" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="isUnderAge">isUnderAge</label>
+                                    <input checked name="isUnderAge" class="form-control" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Date"> date</label>
+                                    <input type="date" name="Date" class="form-control" />
+
+                                </div>
+
+                                <button class="btn btn-success">Submit</button>
+                            </div>
+
+                            <div *ngIf="submitted">
+                                <h4>You added successfully!</h4>
+                                <button class="btn btn-success" (click)="newUser()">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </form> -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

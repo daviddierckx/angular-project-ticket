@@ -11,7 +11,9 @@ import { FestivalService } from '../festival.service';
 
 })
 export class DetailComponent implements OnInit, OnDestroy {
-  festival: Festival;
+  festival = new Festival();
+  id: any;
+  data: any;
   paramSubscription: Subscription;
   constructor(private festivalService: FestivalService, private route: ActivatedRoute) { }
 
@@ -19,9 +21,19 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.paramSubscription = this.route.paramMap
       .pipe(delay(1500))
       .subscribe((params) => {
-        const id = params.get('id');
-        this.festival = this.festivalService.getById(Number(id));
+        this.id = this.route.snapshot.params['id'];
+        console.log(this.id);
+        this.getData();
       })
+
+
+  }
+
+  getData() {
+    this.festivalService.getDataById(this.id).subscribe(res => {
+      this.data = res
+      this.festival = this.data
+    })
   }
   ngOnDestroy(): void {
     this.paramSubscription.unsubscribe();

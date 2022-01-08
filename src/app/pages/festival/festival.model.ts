@@ -5,4 +5,5 @@ export class Festival {
     Artiesten?: string;
     isUnderAge: boolean;
     Date: Date;
+    Price: number
 }

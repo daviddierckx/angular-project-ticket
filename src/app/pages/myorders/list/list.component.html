@@ -1,0 +1,138 @@
+<!-- Button trigger modal -->
+<div class="festival-header">
+    <div class="header-text">
+        <h3 style="font-size: 42px; font-weight: bold;">My Orders</h3>
+
+    </div>
+</div>
+<!-- 
+<div class="component">
+    <table class="table">
+        <thead>
+            <th scope="col">#</th>
+            <th>Naam</th>
+            <th>Max aantal bezoekers</th>
+            <th>Artiesten</th>
+            <th>Underage party?</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let festival of festival; let i = index">
+                <td>{{ i + 1}}</td>
+
+                <td>{{festival.Naam}}</td>
+                <td>{{festival.MaxAantalBezoekers}}</td>
+                <td>
+                    {{festival.Artiesten}}
+                </td>
+                <td *ngIf="!festival.isUnderage">false</td>
+                <td *ngIf="festival.isUnderage">false</td>
+                <td>{{festival.Date | date: 'dd-MM-YYYY'}}</td>
+                <td>
+                    <button style="margin-right: 10px;" class="btn btn-primary"><a style="color: white;"
+                            routerLink="{{festival._id}}">Details</a></button>
+                    <button style="margin-right: 10px;" class="btn btn-primary"><a style="color: white;"
+                            [routerLink]="['edit', festival._id]">Edit</a></button>
+                    <button class="btn btn-danger" (click)="onDelete(festival)">Delete</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div> -->
+
+<div *ngFor="let order of order; let i = index" style="display: inline-block;">
+
+
+
+    <div class="card" style="width: 16rem;margin: 10px;">
+
+
+        <img class="card-img-top" style=" width: 100%; border: none;
+        height: 16vw;
+        object-fit: cover;"
+            src="https://static.vecteezy.com/system/resources/previews/001/189/272/non_2x/ticket-png.png"
+            alt="Card image cap">
+        <div class="card-body">
+            <p>#{{order.OrderNo}}</p>
+            <h5 class="card-title">{{order.Festival}}</h5>
+            <p class="card-text"><strong>Quantity: </strong> {{order?.Quantity}}</p>
+            <p class="card-text"><strong>Price: </strong> $ {{order?.GTotal
+                }}</p>
+            <p *ngIf="order.isGift" style="color: green;"><strong>GIFT</strong></p>
+            <img *ngIf="order.isGift" width="50px"
+                src="https://image.similarpng.com/very-thumbnail/2020/09/Red-gift-box-with-yellow-bow-premium-vector-PNG.png"
+                style="position: absolute; top: 50%; left: 70%;">
+        </div>
+        <div class="card-body">
+            <button style="margin-right: 10px;" class="btn btn-primary"
+                style="background-color: #007bff;margin-right: 5px;"><a style="color: white;"
+                    routerLink="{{order._id}}">Details</a></button>
+            <button style="margin-right: 10px;" class="btn btn-primary"
+                style="background-color: #007bff;margin-right: 5px;"><a [routerLink]="['edit', order._id]"
+                    style="background-color: #007bff;" style="color: white; margin-right: 5px;">Edit</a></button>
+            <button class="btn btn-danger" (click)="onDelete(order._id)"
+                style="background-color: #dc3545;">Delete</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- <form (ngSubmit)="insertData()" [formGroup]="form">
+                    <div style="width: 400px; margin: auto;">
+                        <div class="submit-form">
+                            <div>
+                                <div class="form-group" style="display: none;">
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Naam">Naam</label>
+                                    <input type="text" formControlName="Naam" class="form-control"
+                                        [ngClass]="{'is-invalid': submitted && f['Naam'].errors}"
+                                        placeholder="Enter name">
+
+                                    <div *ngIf="submitted && f['Naam'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['Naam'].errors['required']">
+                                            Name is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="MaxAantalBezoekers">Max aantal bezoekers</label>
+                                    <input type="text" class="form-control" name="MaxAantalBezoekers" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Artiesten">Artiesten </label>
+                                    <input type="text" name="Artiesten" class="form-control" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="isUnderAge">isUnderAge</label>
+                                    <input checked name="isUnderAge" class="form-control" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Date"> date</label>
+                                    <input type="date" name="Date" class="form-control" />
+
+                                </div>
+
+                                <button class="btn btn-success">Submit</button>
+                            </div>
+
+                            <div *ngIf="submitted">
+                                <h4>You added successfully!</h4>
+                                <button class="btn btn-success" (click)="newUser()">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </form> -->

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { AuthService } from 'src/app/pages/auth.service'
 
 @Component({
   selector: 'app-navbar',
@@ -34,9 +35,27 @@ import { Component, Input, OnInit } from '@angular/core'
 
         <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
           <ul class="navbar-nav mr-auto">
+          
             <li class="nav-item">
-              <a class="nav-link" routerLink="/" [routerLinkActive]="['active']">Home</a>
-            </li>
+            <a
+              class="nav-link"
+              routerLink="order"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+              tabindex="-1"
+              >Buy Ticket</a
+            >
+          </li>
+          <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="myorders"
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+            tabindex="-1"
+            >My Orders</a
+          >
+        </li>
             <li class="nav-item">
             <a
               class="nav-link"
@@ -45,6 +64,16 @@ import { Component, Input, OnInit } from '@angular/core'
               [routerLinkActiveOptions]="{ exact: true }"
               tabindex="-1"
               >Festivals</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="artiesten"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+              tabindex="-1"
+              >Artiesten</a
             >
           </li>
             <li class="nav-item">
@@ -57,6 +86,7 @@ import { Component, Input, OnInit } from '@angular/core'
                 >Users</a
               >
             </li>
+            
             <li class="nav-item">
               <a
                 class="nav-link"
@@ -66,6 +96,34 @@ import { Component, Input, OnInit } from '@angular/core'
                 >About</a
               >
             </li>
+            
+          </ul>
+          <ul class="navbar-nav">
+          <li class="nav-link">
+              <a *ngIf="!_authService.loggedIn()"
+                class="nav-link"
+                routerLink="login"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Login</a
+              >
+            </li>
+            <li class="nav-link">
+              <a *ngIf="!_authService.loggedIn()"
+                class="nav-link"
+                routerLink="register"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >Register</a
+              >
+            </li>
+            <li class="nav-link">
+            <a *ngIf="_authService.loggedIn()"
+              class="nav-link" 
+              (click)="_authService.logoutUser()"
+              >Logout</a
+            >
+          </li>
           </ul>
         </div>
       </div>
@@ -80,4 +138,5 @@ import { Component, Input, OnInit } from '@angular/core'
 export class NavbarComponent {
   @Input() title: string = ''
   isNavbarCollapsed = true
+  constructor(public _authService: AuthService) { }
 }

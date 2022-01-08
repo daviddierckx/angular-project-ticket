@@ -1,0 +1,83 @@
+<div class="order-header">
+    <div class="header-text">
+        <h3 style="font-size: 42px; font-weight: bold;">ORDER FESTIVAL TICKET</h3>
+    </div>
+</div>
+<form #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit)="onSubmit(form)">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Order No.</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">#</div>
+                    </div>
+                    <input readonly name="OrderNo" #OrderNo="ngModel" [(ngModel)]=" service.formData.OrderNo"
+                        class="form-control">
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Payment Method</label>
+                <select name="PMethod" #PMethod="ngModel" [(ngModel)]=" service.formData.PMethod" class="form-control"
+                    [class.is-invalid]="!isValid &&  service.formData.PMethod==''">
+                    <option value="">-Select-</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Card">Card</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Grand Total</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">$</div>
+                    </div>
+                    <input readonly name="GTotal" #GTotal="ngModel" [(ngModel)]=" service.formData.GTotal"
+                        class="form-control">
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- Order items -->
+    <table class="table table-borderless">
+        <thead class="thead-light">
+            <th>Festival</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>
+                <a (click)="AddOrEditOrderItem(null,service.formData.OrderID)" class="btn btn-sm btn-success text-white"
+                    style="background-color: green;" *ngIf="service.orderItems.length < 1">Buy Ticket</a>
+            </th>
+        </thead>
+        <tbody>
+            <tr *ngIf="service.orderItems.length==0" [class.text-danger]="!isValid && service.orderItems.length == 0">
+                <td class="font-italic text-center" colspan="5">
+                    No Festivals selected for this order.
+                </td>
+            </tr>
+            <tr *ngFor="let item of service.orderItems; let i = index;">
+                <td>{{item.ItemName}}</td>
+                <td>{{item.Price}}</td>
+                <td>{{item.Quantity}}</td>
+                <td>{{item.Total}}</td>
+                <td>
+                    <a (click)="AddOrEditOrderItem(i,service.formData.OrderID)"
+                        class="btn btn-sm btn-info text-white">Edit</a>
+                    <a (click)="onDeleteOrderItem(item.OrderItemID,i)"
+                        class="btn btn-sm btn-danger text-white ml-1">Delete</a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="form-group">
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </div>
+</form>

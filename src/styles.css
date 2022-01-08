@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files *//*# sourceMappingURL=styles.css.map */
+.order-header{
+    height: 10rem;
+    margin-bottom: 30px;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2016/07/06171249/social-media-music-desktop.jpg);
+    background-position: bottom;
+    color:white;
+    text-align: center;
+    
+  }
+
+  .header-text{
+    position: relative;
+    top: 50%;
+  }
