@@ -90,6 +90,20 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div class="form-group">
+                    <h6>Add artists</h6>
+                    <div *ngFor="let value of values; let i = index">
+                        <select type="text" [(ngModel)]="value.value" #name="ngModel" name="value{{i}}" value="val"
+                            class="form-control">
+                            <option *ngFor="let item of itemList" value="{{item.Naam}}">{{item.Naam}}</option>
+                        </select>
+                        <button style="margin: 10px;" (click)="removeValue(i)"
+                            class="btn btn-danger btn-sm">Remove</button>
+                    </div>
+                    <button (click)="addValue()" class="btn btn-success btn-sm">ADD</button>
+                </div>
+
+
                 <form (ngSubmit)="insertData()" [formGroup]="form">
                     <div class="submit-form">
 
@@ -121,34 +135,21 @@
 
                         </div>
                         <div class="form-group">
-                            <button type="button" (click)="onAddArtist" class="btn btn-sm btn-default">Add
-                                Artists</button>
-                            <label for="Artiesten">Artists</label>
-                            <input formControlName="Artiesten"
-                                [ngClass]="{'is-invalid': submitted && f['Artiesten'].errors}" type="text"
-                                class="form-control" placeholder="Enter Artiesten">
-
-                            <div *ngIf="submitted && f['Artiesten'].errors" class="invalid-feedback">
-                                <div *ngIf="f['Artiesten'].errors['required']">
-                                    Artiesten is required
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="isUnderage">isUnderage</label>
+                            <label for="isUnderage">Underage?</label>
+                            <br>
                             <input formControlName="isUnderage"
                                 [ngClass]="{'is-invalid': submitted && f['isUnderage'].errors}" type="checkbox">
 
                             <div *ngIf="submitted && f['isUnderage'].errors" class="invalid-feedback">
                                 <div *ngIf="f['isUnderage'].errors['required']">
-                                    isUnderage is required
+                                    Underage is required
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Date">Date</label>
                             <input formControlName="Date" [ngClass]="{'is-invalid': submitted && f['Date'].errors}"
-                                type="date">
+                                type="date" class="form-control">
 
                             <div *ngIf="submitted && f['Date'].errors" class="invalid-feedback">
                                 <div *ngIf="f['Date'].errors['required']">
@@ -159,7 +160,7 @@
                         <div class="form-group">
                             <label for="Price">Price</label>
                             <input formControlName="Price" [ngClass]="{'is-invalid': submitted && f['Price'].errors}"
-                                type="number">
+                                type="number" class="form-control">
 
                             <div *ngIf="submitted && f['Price'].errors" class="invalid-feedback">
                                 <div *ngIf="f['Price'].errors['required']">
@@ -245,7 +246,7 @@
                 </form> -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="resetValues()">Close</button>
             </div>
         </div>
     </div>

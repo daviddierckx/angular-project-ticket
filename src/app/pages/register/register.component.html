@@ -6,14 +6,37 @@
                 <div class="card-body">
                     <form class="form">
                         <div class="form-group">
+                            <label for="firstName">Firstname</label>
+                            <input name="firstName" [(ngModel)]="registerUserData.firstName" type="text"
+                                class="form-control rounded-0" required
+                                [class.is-invalid]="!isValid &&registerUserData.firstName==''">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">lastname</label>
+                            <input name="lastName" [(ngModel)]="registerUserData.lastName" type="text"
+                                class="form-control rounded-0" required
+                                [class.is-invalid]="!isValid &&registerUserData.lastName==''">
+                        </div>
+                        <div class="form-group">
+                            <label for="birthDate">Birth Date</label>
+                            <input name="birthDate" [(ngModel)]="registerUserData.birthDate" type="date"
+                                class="form-control rounded-0" required
+                                [class.is-invalid]="!isValid &&registerUserData.birthDate==''">
+                        </div>
+                        <div class="form-group">
                             <label for="email">Email</label>
-                            <input name="email" [(ngModel)]="registerUserData.email" type="text"
-                                class="form-control rounded-0" required>
+                            <input name="email" [(ngModel)]="registerUserData.email" type="email"
+                                class="form-control rounded-0"
+                                [class.is-invalid]="!isValid &&registerUserData.email==''" required>
+                            <p *ngIf="!isvalidEmail" style="color: red; font-size: 10px;">You have entered an invalid
+                                email</p>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input name="password" [(ngModel)]="registerUserData.password" type="text"
-                                class="form-control rounded-0" required>
+                                class="form-control rounded-0" required
+                                [class.is-invalid]="!isValid &&registerUserData.password==''">
+                            <input name="isAdmin" [(ngModel)]="registerUserData.isAdmin" type="checkbox" hidden>
                         </div>
                         <button type="button" class="btn btn-primary float-right"
                             (click)="registerUser()">Register</button>

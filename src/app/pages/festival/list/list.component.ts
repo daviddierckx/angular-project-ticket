@@ -1,11 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Festival } from '../festival.model';
 import { FestivalService } from '../festival.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ArtiestService } from '../../artiest/artiest.service';
+import { Artiest } from '../../artiest/artiest.model';
 
 
 @Component({
@@ -18,15 +20,21 @@ export class ListComponent implements OnInit {
   festival: any;
   submitted = false;
   submitSucces = false;
+  values: any = [];
+
+  itemList!: Artiest[];
+  formArtiest = ""
   @ViewChild('closeModal') closeModal: ElementRef
 
   festivals$: Observable<Festival[]>;
-  constructor(private festivalService: FestivalService, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router) { }
+  constructor(private festivalService: FestivalService, private formBuilder: FormBuilder, private toastr: ToastrService, private artiestService: ArtiestService, private router: Router) { }
 
   ngOnInit(): void {
     console.log('Festivals geladen');
+    this.artiestService.getAllArtiest().toPromise().then(res => this.itemList = res as Artiest[])
     this.createForm()
     this.getFestivalData();
+    this.values = [];
 
   }
   getFestivalData() {
@@ -39,7 +47,7 @@ export class ListComponent implements OnInit {
     this.form = this.formBuilder.group({
       Naam: ['', Validators.required],
       MaxAantalBezoekers: ['', Validators.required],
-      Artiesten: ['', Validators.required],
+      Artiesten: [''],
       isUnderage: ['', Validators.required],
       Date: ['', Validators.required],
       Price: ['', Validators.required]
@@ -52,15 +60,23 @@ export class ListComponent implements OnInit {
   insertData() {
     this.submitted = true;
     if (this.form.invalid) {
-      console.log('INVALID');
       return;
     }
     this.submitSucces = true;
 
+    for (let index = 0; index < this.values.length; index++) {
+      this.formArtiest += this.values[index].value + " | ";
+
+    }
+    this.form.get('Artiesten')?.setValue(this.formArtiest)
     this.festivalService.insertData(this.form.value).subscribe(res => {
       this.festival = res;
       this.submitSucces = true;
+      this.getFestivalData();
+
     })
+    this.getFestivalData();
+
   }
   saveUser(): void {
     const data = {
@@ -99,7 +115,13 @@ export class ListComponent implements OnInit {
     this.getFestivalData();
   }
 
-  onAddArtist() {
-
+  removeValue(i: any) {
+    this.values.splice(i, 1)
+  }
+  addValue() {
+    this.values.push({ value: "" })
+  }
+  resetValues() {
+    this.values = []
   }
 }

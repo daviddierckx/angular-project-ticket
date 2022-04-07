@@ -16,7 +16,7 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'order' },
+      { path: '', redirectTo: 'order', pathMatch: 'full' },
       { path: 'orders', component: OrdersComponent },
       {
         path: 'order', children: [

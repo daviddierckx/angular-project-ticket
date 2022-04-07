@@ -7,26 +7,45 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginUserData: any = {
+  isValid: Boolean = true;
+  isUserValid: Boolean = true;
 
+  loginUserData: any = {
+    email: '',
+    password: ''
   }
   constructor(private _auth: AuthService, private authService: AuthService, private _router: Router) { }
 
   ngOnInit(): void {
   }
   loginUser() {
-    this.authService.loginUser(this.loginUserData).subscribe(
-      res => {
-        console.log(res)
-        localStorage.setItem('token', res.token)
+    if (this.validateForm(this.loginUserData)) {
+      this.authService.loginUser(this.loginUserData).subscribe(
+        res => {
+          console.log(res)
+          localStorage.setItem('token', res.token)
 
-        sessionStorage.setItem('userId', res.user._id);
-        var data = sessionStorage.getItem('userId');
-        console.log(data)
+          sessionStorage.setItem('userId', res.user._id);
+          var data = sessionStorage.getItem('userId');
+          console.log(data)
 
-        this._router.navigate(['/dashboard'])
-      },
-      err => console.log(err)
-    )
+          this._router.navigate(['/dashboard'])
+        },
+        err => {
+          console.log(err)
+          this.isUserValid = false;
+        }
+      )
+    }
+  }
+  validateForm(formData: any) {
+    this.isValid = true;
+    if (formData.email == '') {
+      this.isValid = false;
+    } else if (formData.password == '') {
+      this.isValid = false;
+    }
+    return this.isValid;
+
   }
 }
