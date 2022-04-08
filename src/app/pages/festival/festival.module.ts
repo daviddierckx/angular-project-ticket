@@ -22,7 +22,7 @@ const routes: Routes = [
     EditComponent
   ],
   imports: [
-    CommonModule, FormsModule, ReactiveFormsModule, RouterModule.forChild(routes), FormsModule
+    CommonModule, FormsModule, ReactiveFormsModule, RouterModule.forChild(routes)
   ]
 })
 export class FestivalModule { }

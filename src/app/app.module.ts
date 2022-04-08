@@ -47,7 +47,7 @@ import { OrderItemsComponent } from './pages/orders/order-items/order-items.comp
     MatDialogModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    RouterModule, NgbModule, AppRoutingModule,],
+    RouterModule, NgbModule, AppRoutingModule],
   entryComponents: [OrderItemsComponent],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
