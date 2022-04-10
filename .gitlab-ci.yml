@@ -44,7 +44,7 @@ unittests:
   before_script:
     - npm install --no-optional
   script:
-    - ng test
+    - npm run test
     # - npm run sonar
   only:
     - master
