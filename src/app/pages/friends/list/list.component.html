@@ -1,0 +1,253 @@
+<!-- Button trigger modal -->
+<div class="festival-header">
+    <div class="header-text">
+        <h3 style="font-size: 42px; font-weight: bold;">Upcoming festival artists</h3>
+        <div style="text-align: right;">
+            <button *ngIf="isAdmin === 'true'" type="button" class="btn btn-success"
+                style="margin-bottom: 20px; margin-right: 50px; " data-toggle="modal" data-target="#exampleModal">
+                Add Festival
+            </button>
+        </div>
+    </div>
+</div>
+<!-- 
+<div class="component">
+    <table class="table">
+        <thead>
+            <th scope="col">#</th>
+            <th>Naam</th>
+            <th>Max aantal bezoekers</th>
+            <th>Artiesten</th>
+            <th>Underage party?</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let festival of festival; let i = index">
+                <td>{{ i + 1}}</td>
+
+                <td>{{festival.Naam}}</td>
+                <td>{{festival.MaxAantalBezoekers}}</td>
+                <td>
+                    {{festival.Artiesten}}
+                </td>
+                <td *ngIf="!festival.isUnderage">false</td>
+                <td *ngIf="festival.isUnderage">false</td>
+                <td>{{festival.Date | date: 'dd-MM-YYYY'}}</td>
+                <td>
+                    <button style="margin-right: 10px;" class="btn btn-primary"><a style="color: white;"
+                            routerLink="{{festival._id}}">Details</a></button>
+                    <button style="margin-right: 10px;" class="btn btn-primary"><a style="color: white;"
+                            [routerLink]="['edit', festival._id]">Edit</a></button>
+                    <button class="btn btn-danger" (click)="onDelete(festival)">Delete</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div> -->
+
+<div *ngFor="let festival of festival; let i = index" style="display: inline-block;">
+
+
+
+    <div class="card" style="width: 16rem;margin: 10px;">
+
+
+        <img class="card-img-top" style=" width: 100%;
+        height: 16vw;
+        object-fit: cover;"
+            src="https://media.nu.nl/m/a8pxozbau929_wd1280.jpg/eendaagse-festivals-vanaf-14-augustus-alleen-mogelijk-tot-750-bezoekers.jpg"
+            alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{festival.Naam}}</h5>
+            <p class="card-text"><strong>Date: </strong> {{festival?.Date | date: 'dd-MM-YYYY' }}</p>
+            <p class="card-text"><strong>Price: </strong> $ {{festival?.Price}}</p>
+        </div>
+        <div class="card-body">
+            <button style="margin-right: 10px;" class="btn btn-primary"
+                style="background-color: #007bff;margin-right: 5px;"><a style="color: white;"
+                    routerLink="{{festival._id}}">Details</a></button>
+            <button *ngIf="isAdmin === 'true'" style="margin-right: 10px;" class="btn btn-primary"
+                style="background-color: #007bff;margin-right: 5px;"><a [routerLink]="['edit', festival._id]"
+                    style="background-color: #007bff;" style="color: white; margin-right: 5px;">Edit</a></button>
+            <button *ngIf="isAdmin === 'true'" class="btn btn-danger" (click)="onDelete(festival._id)"
+                style="background-color: #dc3545;">Delete</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div #childModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Festival</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <h6>Add artists</h6>
+                    <div *ngFor="let value of values; let i = index">
+                        <select type="text" [(ngModel)]="value.value" #name="ngModel" name="value{{i}}" value="val"
+                            class="form-control">
+                            <option *ngFor="let item of itemList" value="{{item.Naam}}">{{item.Naam}}</option>
+                        </select>
+                        <button style="margin: 10px;" (click)="removeValue(i)"
+                            class="btn btn-danger btn-sm">Remove</button>
+                    </div>
+                    <button (click)="addValue()" class="btn btn-success btn-sm">ADD</button>
+                </div>
+
+
+                <form (ngSubmit)="insertData()" [formGroup]="form">
+                    <div class="submit-form">
+
+                        <div class="form-group">
+                            <label for="Naam">Festival Name</label>
+                            <input type="text" formControlName="Naam" class="form-control"
+                                [ngClass]="{'is-invalid': submitted && f['Naam'].errors}" placeholder="Enter Name">
+
+                            <div *ngIf="submitted && f['Naam'].errors" class="invalid-feedback">
+                                <div *ngIf="f['Naam'].errors['required']">
+                                    Name is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="MaxAantalBezoekers">Max Visitors</label>
+                            <input type="number" formControlName="MaxAantalBezoekers"
+                                [ngClass]="{'is-invalid': submitted && f['MaxAantalBezoekers'].errors}"
+                                class="form-control">
+
+                            <div *ngIf="submitted && f['MaxAantalBezoekers'].errors" class="invalid-feedback">
+                                <div *ngIf="f['MaxAantalBezoekers'].errors['required']">
+                                    Max visitors is required
+                                </div>
+                                <div *ngIf="f['MaxAantalBezoekers'].errors['MaxAantalBezoekers']">
+                                    Max visitors must be valid
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="isUnderage">Underage?</label>
+                            <br>
+                            <input formControlName="isUnderage"
+                                [ngClass]="{'is-invalid': submitted && f['isUnderage'].errors}" type="checkbox">
+
+                            <div *ngIf="submitted && f['isUnderage'].errors" class="invalid-feedback">
+                                <div *ngIf="f['isUnderage'].errors['required']">
+                                    Underage is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Date">Date</label>
+                            <input formControlName="Date" [ngClass]="{'is-invalid': submitted && f['Date'].errors}"
+                                type="date" class="form-control">
+
+                            <div *ngIf="submitted && f['Date'].errors" class="invalid-feedback">
+                                <div *ngIf="f['Date'].errors['required']">
+                                    Date is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Price">Price</label>
+                            <input formControlName="Price" [ngClass]="{'is-invalid': submitted && f['Price'].errors}"
+                                type="number" class="form-control">
+
+                            <div *ngIf="submitted && f['Price'].errors" class="invalid-feedback">
+                                <div *ngIf="f['Price'].errors['required']">
+                                    Price is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button #closeBtn class="btn btn-dark btn-sm">Submit</button>
+                        </div>
+                        <div *ngIf="submitSucces">
+                            <h4>You added successfully!</h4>
+                        </div>
+                    </div>
+                </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- <form (ngSubmit)="insertData()" [formGroup]="form">
+                    <div style="width: 400px; margin: auto;">
+                        <div class="submit-form">
+                            <div>
+                                <div class="form-group" style="display: none;">
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Naam">Naam</label>
+                                    <input type="text" formControlName="Naam" class="form-control"
+                                        [ngClass]="{'is-invalid': submitted && f['Naam'].errors}"
+                                        placeholder="Enter name">
+
+                                    <div *ngIf="submitted && f['Naam'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['Naam'].errors['required']">
+                                            Name is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="MaxAantalBezoekers">Max aantal bezoekers</label>
+                                    <input type="text" class="form-control" name="MaxAantalBezoekers" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Artiesten">Artiesten </label>
+                                    <input type="text" name="Artiesten" class="form-control" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="isUnderAge">isUnderAge</label>
+                                    <input checked name="isUnderAge" class="form-control" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Date"> date</label>
+                                    <input type="date" name="Date" class="form-control" />
+
+                                </div>
+
+                                <button class="btn btn-success">Submit</button>
+                            </div>
+
+                            <div *ngIf="submitted">
+                                <h4>You added successfully!</h4>
+                                <button class="btn btn-success" (click)="newUser()">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </form> -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="resetValues()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

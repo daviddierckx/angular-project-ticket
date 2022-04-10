@@ -1,0 +1,36 @@
+<div class="component" *ngIf="id === undefined">
+    <div class="lds-default">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<div class="component" *ngIf="id !== undefined">
+    <h2>{{festival?.Naam}}</h2>
+    <hr>
+    <!-- <p><strong>Artiesten: </strong> <span *ngFor="let item of festival.Artiesten">
+            {{item}} |
+        </span></p> -->
+    <p><strong>Artists: </strong> {{festival?.Artiesten }}</p>
+    <p><strong>Date: </strong> {{festival?.Date | date: 'dd-MM-YYYY'}}</p>
+
+    <h6 style="padding-top: 50px;">Beschrijving</h6>
+    <p style="margin-bottom: 20px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, quo incidunt quam
+        officia praesentium neque
+        fugiat voluptate nostrum, voluptatem ipsa nobis, vero perspiciatis vel quaerat! Et, repudiandae? Voluptate,
+        vitae soluta?</p>
+
+    <img width="60%" style="margin-bottom: 40px;"
+        src="https://media.nu.nl/m/a8pxozbau929_wd1280.jpg/eendaagse-festivals-vanaf-14-augustus-alleen-mogelijk-tot-750-bezoekers.jpg"
+        alt="">
+</div>
+<a routerLink="../">Go back</a>
