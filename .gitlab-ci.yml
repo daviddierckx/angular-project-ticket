@@ -74,18 +74,31 @@ unittests:
 #
 # Example: Deploy to Google Firebase, as an alternative to Heroku
 #
-
-
-deploy hosting to dev instance:
+firebase:
   stage: deploy
+  image: markhobson/node-chrome:latest
+  before_script:
+    - npm i --no-optional
+    - npm i -g firebase-tools
   script:
-    - firebase use default
-    - npm install
-    - ng build
-    - firebase deploy --only hosting
+    - npm run build
+    - firebase deploy --token $FIREBASE_TOKEN
   only:
-    refs:
-      - master
-    changes:
-      - src/**/*
+    - master
+    
+
+
+# deploy hosting to dev instance:
+#   stage: deploy
+#   image: markhobson/node-chrome:latest
+#   script:
+#     - firebase use default
+#     - npm install
+#     - ng build
+#     - firebase deploy --only hosting
+#   only:
+#     refs:
+#       - master
+#     changes:
+#       - src/**/*
 
