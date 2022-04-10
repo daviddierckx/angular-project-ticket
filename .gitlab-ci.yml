@@ -16,6 +16,10 @@ cache:
   key: $CI_COMMIT_REF_SLUG
   paths:
     - node_modules
+before_script:
+  - npm i -g firebase-tools
+
+
 
 #
 # Global variables
@@ -67,35 +71,21 @@ unittests:
 # by Travis CI, but can also be used with GitLab CI.
 # https://docs.gitlab.com/ee/ci/examples/deployment/#using-dpl-with-docker
 #
-production:
-  type: deploy
-  stage: deploy
-  image: ruby:latest
-  script:
-    # Get your key at https://dashboard.heroku.com/account
-    # and add it to your project environment variables at GitLab.
-    - echo "Heroku api key = $HEROKU_API_KEY"
-    # The name of your app at Heroku. See https://dashboard.heroku.com/apps.
-    - echo "Heroku appname = $HEROKU_APP_NAME"
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - gem install dpl
-    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
-  only:
-    - master
-
 #
 # Example: Deploy to Google Firebase, as an alternative to Heroku
 #
-firebase:
+
+
+deploy hosting to dev instance:
   stage: deploy
-  image: markhobson/node-chrome:latest
-  before_script:
-    - npm i --no-optional
-    - npm i -g firebase-tools
   script:
-    - npm run build
-    - firebase deploy --token $FIREBASE_TOKEN
+    - firebase use default
+    - npm install
+    - ng build
+    - firebase deploy --only hosting
   only:
-    # - master
-    - firebase-branch
+    refs:
+      - master
+    changes:
+      - src/**/*
+
