@@ -4,13 +4,10 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "moduleResolution": "node",
+    "skipLibCheck": true,
     "types": [
       "node"
-    ],
-    "sourceMap": false,
-    "noImplicitAny": false,
-    "declaration": true,
-    "noResolve": true
+    ]
   },
   "files": [
     "src/main.ts",
