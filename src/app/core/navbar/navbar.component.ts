@@ -76,8 +76,8 @@ import { AuthService } from 'src/app/pages/auth.service'
               >Artiesten</a
             >
           </li>
-            <li class="nav-item">
-              <a
+            <li class="nav-item" >
+              <a *ngIf="isAdmin === 'true'"
                 class="nav-link"
                 routerLink="users"
                 [routerLinkActive]="['active']"
@@ -138,5 +138,6 @@ import { AuthService } from 'src/app/pages/auth.service'
 export class NavbarComponent {
   @Input() title: string = ''
   isNavbarCollapsed = true
+  isAdmin = sessionStorage.getItem('isAdmin')?.valueOf()
   constructor(public _authService: AuthService) { }
 }

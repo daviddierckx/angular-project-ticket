@@ -3,8 +3,8 @@
     <div class="header-text">
         <h3 style="font-size: 42px; font-weight: bold;">Upcoming festival artists</h3>
         <div style="text-align: right;">
-            <button type="button" class="btn btn-success" style="margin-bottom: 20px; margin-right: 50px; "
-                data-toggle="modal" data-target="#exampleModal">
+            <button *ngIf="isAdmin === 'true'" type="button" class="btn btn-success"
+                style="margin-bottom: 20px; margin-right: 50px; " data-toggle="modal" data-target="#exampleModal">
                 Add Festival
             </button>
         </div>
@@ -68,10 +68,10 @@
             <button style="margin-right: 10px;" class="btn btn-primary"
                 style="background-color: #007bff;margin-right: 5px;"><a style="color: white;"
                     routerLink="{{festival._id}}">Details</a></button>
-            <button style="margin-right: 10px;" class="btn btn-primary"
+            <button *ngIf="isAdmin === 'true'" style="margin-right: 10px;" class="btn btn-primary"
                 style="background-color: #007bff;margin-right: 5px;"><a [routerLink]="['edit', festival._id]"
                     style="background-color: #007bff;" style="color: white; margin-right: 5px;">Edit</a></button>
-            <button class="btn btn-danger" (click)="onDelete(festival._id)"
+            <button *ngIf="isAdmin === 'true'" class="btn btn-danger" (click)="onDelete(festival._id)"
                 style="background-color: #dc3545;">Delete</button>
         </div>
     </div>

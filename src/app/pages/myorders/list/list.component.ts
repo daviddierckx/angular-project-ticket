@@ -19,6 +19,7 @@ export class ListComponent implements OnInit {
   order: any;
   submitted = false;
   submitSucces = false;
+
   @ViewChild('closeModal') closeModal: ElementRef
 
   order$: Observable<MyOrder[]>;

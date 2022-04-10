@@ -18,6 +18,8 @@ export class ListComponent implements OnInit {
   artiest: any;
   submitted = false;
   submitSucces = false;
+  isAdmin = sessionStorage.getItem('isAdmin')?.valueOf()
+
   @ViewChild('closeModal') closeModal: ElementRef
 
   artiests$: Observable<Artiest[]>;

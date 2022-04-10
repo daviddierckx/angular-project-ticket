@@ -20,6 +20,8 @@ export class ListComponent implements OnInit {
   festival: any;
   submitted = false;
   submitSucces = false;
+  isAdmin = sessionStorage.getItem('isAdmin')?.valueOf()
+
   values: any = [];
 
   itemList!: Artiest[];

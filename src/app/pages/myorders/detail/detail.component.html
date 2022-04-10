@@ -14,22 +14,23 @@
         <div></div>
     </div>
 </div>
-<div class="component" *ngIf="id !== undefined">
-    <h2>{{artiest?.Naam}}</h2>
+<div>
+    <h2>{{myOrder?.Festival}}</h2>
     <hr>
     <!-- <p><strong>Artiesten: </strong> <span *ngFor="let item of festival.Artiesten">
             {{item}} |
         </span></p> -->
 
-    <p style="display:inline-block"><strong>Genre: </strong> {{artiest?.Genre }}</p>
+    <p><strong>Price: </strong>$ {{myOrder?.GTotal }}</p>
+    <p><strong>Quantity: </strong> {{myOrder?.Quantity }} tickets</p>
 
-    <div style=" text-align: right;" *ngIf="artiest.ImageUrl.length > 10">
-        <img style="width: 200px; " [src]="artiest.ImageUrl" />
-    </div>
     <h6 style="padding-top: 50px;">Beschrijving</h6>
-    <p style="margin-bottom: 20px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, quo incidunt quam
+    <p style="margin-bottom: 60px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, quo incidunt quam
         officia praesentium neque
         fugiat voluptate nostrum, voluptatem ipsa nobis, vero perspiciatis vel quaerat! Et, repudiandae? Voluptate,
         vitae soluta?</p>
+
+
 </div>
-<a routerLink="../">Go back</a>
+
+<a href="../">Go back</a>

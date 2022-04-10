@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', res.token)
 
           sessionStorage.setItem('userId', res.user._id);
+          sessionStorage.setItem('isAdmin', res.user.isAdmin)
           var data = sessionStorage.getItem('userId');
           console.log(data)
 
