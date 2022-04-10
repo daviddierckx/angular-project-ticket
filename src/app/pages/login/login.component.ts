@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
           console.log(data)
 
           this._router.navigate(['/dashboard'])
+          window.location.reload();
+
         },
         err => {
           console.log(err)
@@ -38,6 +40,8 @@ export class LoginComponent implements OnInit {
         }
       )
     }
+    this._router.navigate(['/dashboard'])
+
   }
   validateForm(formData: any) {
     this.isValid = true;

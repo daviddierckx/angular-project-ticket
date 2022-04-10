@@ -20,6 +20,10 @@ export class AuthService {
   }
   logoutUser() {
     localStorage.removeItem('token')
+    sessionStorage.removeItem('isAdmin')
+
     this._router.navigate(['/dashboard'])
+    window.location.reload();
+
   }
 }
