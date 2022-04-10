@@ -9,8 +9,8 @@ import { User } from './user.model';
 })
 export class UserService {
   //komt normaal uit database
-  user: NeoUser[]
-  users: User[] = [
+  users: NeoUser[]
+  user: User[] = [
     {
       id: 0,
       firstName: "Peter",
@@ -85,21 +85,21 @@ export class UserService {
 
   ///////
   getById(id: number): any {
-    const result = this.users.filter(item => item.id === id)
+    const result = this.user.filter(item => item.id === id)
 
     return result[0];
   }
   delete(user: User): Observable<User[]> {
-    return of(this.users.splice(user.id, 1))
+    return of(this.user.splice(user.id, 1))
 
   }
   create(data: User): Observable<any> {
-    return of(this.users).pipe(tap(userList => {
+    return of(this.user).pipe(tap(userList => {
       userList.push(data)
     }));
   }
   onUpdate(user: User) {
-    let oldUser = this.users.find(x => x.id === user.id)
+    let oldUser = this.user.find(x => x.id === user.id)
     console.log("data " + oldUser!.lastName);
     console.log("data " + user!.lastName);
 

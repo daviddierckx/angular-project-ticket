@@ -104,7 +104,7 @@ export class ListComponent implements OnInit {
 
   onDelete(id: any) {
     this.userService.DeleteDataById(id).subscribe(() => {
-      this.userService.user = this.userService.user.filter((t) => t._id !== id)
+      this.userService.users = this.userService.users.filter((t) => t._id !== id)
       this.getUserData();
     })
     window.location.reload()
