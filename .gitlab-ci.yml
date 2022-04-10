@@ -81,6 +81,9 @@ firebase:
     - npm i --no-optional
     - npm i -g firebase-tools
   script:
+    - firebase use default
+    - npm install
+    - ng build
     - npm run build
     - firebase deploy --token $FIREBASE_TOKEN
   only:
