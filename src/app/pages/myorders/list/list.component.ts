@@ -60,6 +60,7 @@ export class ListComponent implements OnInit {
 
     })
     this.getOrderData();
+    window.location.reload()
   }
 
 

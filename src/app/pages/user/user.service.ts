@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay, Observable, of, tap } from 'rxjs';
+import { NeoUser } from './Neouser.model';
 import { User } from './user.model';
 
 @Injectable({
@@ -7,7 +9,7 @@ import { User } from './user.model';
 })
 export class UserService {
   //komt normaal uit database
-
+  user: NeoUser[]
   users: User[] = [
     {
       id: 0,
@@ -53,14 +55,36 @@ export class UserService {
     },
 
   ]
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
   getUserLength(): number {
     return this.users.length;
   }
-  getAll(): Observable<User[]> {
-    return of(this.users).pipe(delay(100));
+  getAllUsers() {
+    return this.httpClient.get('http://localhost:3003')
   }
-  getById(id: number): User {
+
+  insertData(data: any) {
+    return this.httpClient.post('http://localhost:3003', data)
+  }
+
+  getDataById(id: any) {
+    return this.httpClient.get('http://localhost:3003/' + id)
+
+  }
+
+  updateData(id: any, data: any) {
+    return this.httpClient.put('http://localhost:3003/' + id, data)
+  }
+  DeleteDataById(id: any) {
+    return this.httpClient.delete('http://localhost:3003/' + id)
+      .pipe(tap(console.log));
+
+
+  }
+
+
+  ///////
+  getById(id: number): any {
     const result = this.users.filter(item => item.id === id)
 
     return result[0];

@@ -1,50 +1,24 @@
-<form (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <div style="width: 400px; margin: auto;">
-        <h5>Edit: {{user.emailAdress}}</h5>
-        <hr>
-        <div class="submit-form">
-            <!-- <div *ngIf="!submitted"> -->
-            <div class="form-group" style="display: none;">
-                <label for="ID">ID</label>
-                <input type="text" class="form-control" name="id" required [ngModel]="user.id" />
+<h4>Edit</h4>
+<form (ngSubmit)="updateData()" [formGroup]="form">
+    <div class="submit-form">
 
-            </div>
-            <div class="form-group">
-                <label for="firstName">First name</label>
-                <input type="text" class="form-control" name="firstName" required [ngModel]="user.firstName" />
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" formControlName="name" class="form-control" placeholder="Enter Name">
 
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last name</label>
-                <input type="text" class="form-control" name="lastName" required [ngModel]="user.lastName" />
 
-            </div>
-            <div class="form-group">
-                <label for="emailAdress">Email adress</label>
-                <input type="text" name="emailAdress" class="form-control" required [ngModel]="user.emailAdress" />
+        </div>
 
-            </div>
-            <div class="form-group">
-                <label for="birthDate">Birth date</label>
-                <input type="date" name="birthDate" class="form-control" required [ngModel]="user.birthDate" />
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" formControlName="email" class="form-control" placeholder="Enter Email">
 
-            </div>
-            <div class="form-group">
-                <label for="isAdmin">Admin?</label>
-                <br>
-                <input type="checkbox" name="isAdmin" required [ngModel]="user.isAdmin" />
 
-            </div>
-            <button type="submit" class="btn btn-success">Save</button>
+        </div>
 
-            <!-- <button (click)="saveUser()" class="btn btn-success">Submit</button>
-            </div>
-
-            <!-- <div *ngIf="submitted">
-                <h4>You added successfully!</h4>
-                <button class="btn btn-success" (click)="newUser()">Add</button>
-            </div> -->
-
+        <div class="form-group">
+            <button #closeBtn class="btn btn-dark btn-sm">Submit</button>
         </div>
     </div>
 </form>
+<a routerLink="../../">Go back</a>

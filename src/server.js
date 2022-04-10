@@ -46,6 +46,7 @@ const options = {
     )
   }
 }
+resp.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, '..', 'dist', appname), options))

@@ -14,11 +14,11 @@
         <div></div>
     </div>
 </div>
-<div class="component" *ngIf="user !== undefined">
-    <h2>{{user?.firstName}} {{user?.lastName}}</h2>
+<div class="component" *ngIf="id !== undefined">
+    <h2>{{user?.name}}</h2>
     <hr>
-    <p><strong>Email: </strong> {{user?.emailAdress}}</p>
-    <p><strong>Birth date: </strong> {{user?.birthDate | date: 'dd-MM-YYYY'}}</p>
+    <p><strong>Email: </strong> {{user?.email}}</p>
+
 
 </div>
 <a routerLink="../">Go back</a>
