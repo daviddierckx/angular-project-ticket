@@ -6,7 +6,11 @@
     "moduleResolution": "node",
     "types": [
       "node"
-    ]
+    ],
+    "sourceMap": false,
+    "noImplicitAny": false,
+    "declaration": true,
+    "noResolve": true
   },
   "files": [
     "src/main.ts",
