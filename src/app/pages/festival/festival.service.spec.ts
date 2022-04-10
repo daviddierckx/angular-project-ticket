@@ -13,7 +13,8 @@ const expectedFestivals: Festival[] = [
     MaxAantalBezoekers: 10000,
     Artiesten: "Lil kleine, Boef, Rare Akuma",
     isUnderAge: false,
-    Date: new Date('2021-03-21')
+    Date: new Date('2021-03-21'),
+    Price: 100
   },
 ]
 
@@ -32,9 +33,6 @@ describe('FestivalService', () => {
     httpSpy = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>;
   });
 
-  xit('should be created', () => {
-    expect(service).toBeTruthy();
-  });
 
   fit('should return a list of festivals', (done: DoneFn) => {
     httpSpy.get.and.returnValue(of(expectedFestivals));
@@ -67,7 +65,8 @@ describe('FestivalService', () => {
       MaxAantalBezoekers: 10000,
       Artiesten: "Zwangere guy",
       isUnderAge: false,
-      Date: new Date('2021-04-21')
+      Date: new Date('2021-04-21'),
+      Price: 100
     };
     console.log(data);
     service.create(data).subscribe(result => {
@@ -84,7 +83,8 @@ describe('FestivalService', () => {
       MaxAantalBezoekers: 10000,
       Artiesten: "Zwangere guy",
       isUnderAge: false,
-      Date: new Date('2021-04-21')
+      Date: new Date('2021-04-21'),
+      Price: 100
     };
     service.onUpdate(updateData).subscribe(result => {
       expect(service.getById(0)).toEqual(updateData)
