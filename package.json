@@ -15,7 +15,6 @@
   "scripts": {
     "ng": "ng",
     "start": "nodemon src/server.js",
-    "postinstall": "ng build",
     "build": "ng build --prod",
     "pretty": "prettier --write \"./src/**/*.{ts,js,css,scss,json}\"",
     "sonar": "sonar-scanner",
