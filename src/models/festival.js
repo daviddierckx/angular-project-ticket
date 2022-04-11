@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 
-// Employee Schema
+// Festival Schema
 
 const Festival = mongoose.model('Festival', {
 
