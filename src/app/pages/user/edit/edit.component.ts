@@ -3,7 +3,7 @@ import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { delay, Subscription } from 'rxjs';
-import { NeoUser } from '../Neouser.model';
+import { NeoUser } from '../neo-user';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
 

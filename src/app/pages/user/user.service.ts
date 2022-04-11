@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay, Observable, of, tap } from 'rxjs';
-import { NeoUser } from 'src/app/pages/user/Neouser.model';
+import { NeoUser } from './neo-user';
 import { User } from './user.model';
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { delay, subscribeOn, Subscription } from 'rxjs';
-import { NeoUser } from '../Neouser.model';
+import { NeoUser } from '../neo-user';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
 

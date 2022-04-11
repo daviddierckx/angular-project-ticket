@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { NeoUser } from '../Neouser.model';
+import { NeoUser } from '../neo-user';
 import { UserService } from '../user.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ArtiestService } from '../../artiest/artiest.service';
