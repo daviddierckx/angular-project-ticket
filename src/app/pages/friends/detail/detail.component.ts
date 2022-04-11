@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { delay, Subscription } from 'rxjs';
+import { NeoUser } from '../../user/neo-user';
 import { Festival } from '../friends.model';
-import { FestivalService } from '../friends.service';
+import { FriendsService } from '../friends.service';
 
 @Component({
   selector: 'app-detail',
@@ -11,11 +12,11 @@ import { FestivalService } from '../friends.service';
 
 })
 export class DetailComponent implements OnInit, OnDestroy {
-  festival = new Festival();
+  user: any;
   id: any;
   data: any;
   paramSubscription: Subscription;
-  constructor(private festivalService: FestivalService, private route: ActivatedRoute) { }
+  constructor(private friendsService: FriendsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.paramSubscription = this.route.paramMap
@@ -23,16 +24,16 @@ export class DetailComponent implements OnInit, OnDestroy {
       .subscribe((params) => {
         this.id = this.route.snapshot.params['id'];
         console.log(this.id);
-        this.getData();
+        // this.ge();
       })
 
 
   }
 
   getData() {
-    this.festivalService.getDataById(this.id).subscribe(res => {
+    this.friendsService.getFriends().subscribe(res => {
       this.data = res
-      this.festival = this.data
+      this.user = this.data
     })
   }
   ngOnDestroy(): void {

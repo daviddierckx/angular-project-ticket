@@ -32,6 +32,11 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
+        path: 'friends',
+        loadChildren: () => import('./pages/friends/friends.module').then(m => m.FriendsModule),
+        canActivate: [AuthGuard]
+      },
+      {
         path: 'festivals',
         loadChildren: () => import('./pages/festival/festival.module').then(m => m.FestivalModule)
       },

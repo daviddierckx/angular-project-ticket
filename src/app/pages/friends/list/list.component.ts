@@ -4,10 +4,12 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Festival } from '../friends.model';
-import { FestivalService } from '../friends.service';
+import { FriendsService } from '../friends.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ArtiestService } from '../../artiest/artiest.service';
 import { Artiest } from '../../artiest/artiest.model';
+import { User } from '../../user/user.model';
+import { NeoUser } from '../../user/neo-user';
 
 
 @Component({
@@ -17,42 +19,40 @@ import { Artiest } from '../../artiest/artiest.model';
 })
 export class ListComponent implements OnInit {
   form: FormGroup;
-  festival: any;
+  friends: any;
   submitted = false;
   submitSucces = false;
   isAdmin = sessionStorage.getItem('isAdmin')?.valueOf()
 
   values: any = [];
 
-  itemList!: Artiest[];
+  friendList!: any;
   formArtiest = ""
   @ViewChild('closeModal') closeModal: ElementRef
 
-  festivals$: Observable<Festival[]>;
-  constructor(private festivalService: FestivalService, private formBuilder: FormBuilder, private toastr: ToastrService, private artiestService: ArtiestService, private router: Router) { }
+  friends$: Observable<NeoUser[]>;
+  constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private friendService: FriendsService, private router: Router) { }
 
   ngOnInit(): void {
     console.log('Festivals geladen');
-    this.artiestService.getAllArtiest().toPromise().then(res => this.itemList = res as Artiest[])
+    this.friendService.getFriends().toPromise().then(res => this.friendList = res as NeoUser[])
     this.createForm()
-    this.getFestivalData();
+    this.getFriendsData();
     this.values = [];
 
   }
-  getFestivalData() {
-    this.festivalService.getAllFestivals().subscribe(res => {
+  getFriendsData() {
+    this.friendService.getFriends().subscribe(res => {
       console.log(res);
-      this.festival = res;
+      this.friendList = res;
     })
   }
   createForm() {
     this.form = this.formBuilder.group({
-      Naam: ['', Validators.required],
-      MaxAantalBezoekers: ['', Validators.required],
-      Artiesten: [''],
-      isUnderage: ['', Validators.required],
-      Date: ['', Validators.required],
-      Price: ['', Validators.required]
+      id: ['', Validators.required],
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+
     })
   }
 
@@ -71,35 +71,32 @@ export class ListComponent implements OnInit {
 
     }
     this.form.get('Artiesten')?.setValue(this.formArtiest)
-    this.festivalService.insertData(this.form.value).subscribe(res => {
-      this.festival = res;
+    this.friendService.makeFriend(this.form.value.id, 1).subscribe(res => {
+      this.friends = res;
       this.submitSucces = true;
-      this.getFestivalData();
+      this.getFriendsData();
 
     })
-    this.getFestivalData();
+    this.getFriendsData();
 
   }
   saveUser(): void {
     const data = {
-      id: this.festival.id,
-      Naam: this.festival.Naam,
-      MaxAantalBezoekers: this.festival.MaxAantalBezoekers,
-      Artiesten: this.festival.Artiesten,
-      isUnderAge: this.festival.isUnderAge,
-      Date: this.festival.Date,
-      Price: this.festival.Price
+      _id: this.friends._id,
+      name: this.friends.name,
+      email: this.friends.email
+
     };
 
-    this.festivalService.create(data)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.submitted = true;
-        },
-        error => {
-          console.log(error);
-        });
+    // this.userService.create(data)
+    //   .subscribe(
+    //     response => {
+    //       console.log(response);
+    //       this.submitted = true;
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     });
   }
   newUser(): void {
     this.submitted = false;
@@ -109,12 +106,12 @@ export class ListComponent implements OnInit {
 
 
   onDelete(id: any) {
-    this.festivalService.DeleteDataById(id).subscribe(() => {
-      this.festivalService.festival = this.festivalService.festival.filter((t) => t.id !== id)
-      this.getFestivalData();
-
+    this.friendService.removeFriend(id).subscribe(() => {
+      this.friendService.users = this.friendService.users.filter((t) => t._id !== id)
+      this.getFriendsData();
     })
-    this.getFestivalData();
+    window.location.reload()
+
   }
 
   removeValue(i: any) {

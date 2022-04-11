@@ -1,35 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay, Observable, of, tap } from 'rxjs';
+import { NeoUser } from '../user/neo-user';
 import { Festival } from './friends.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FestivalService {
+export class FriendsService {
 
 
   constructor(private httpClient: HttpClient) { }
+  users: NeoUser[]
 
-  getAllFestivals() {
-    return this.httpClient.get('http://localhost:3000/api/festival')
-  }
-  insertData(data: any) {
-    return this.httpClient.post('http://localhost:3000/api/festival', data)
-  }
 
-  getDataById(id: any) {
-    return this.httpClient.get('http://localhost:3000/api/festival/' + id)
-
+  makeFriend(data: any, id: any) {
+    return this.httpClient.post('http://localhost:3003/friends/' + id, data)
   }
 
-  updateData(id: any, data: any) {
-    return this.httpClient.put('http://localhost:3000/api/festival/edit/' + id, data)
-  }
-  DeleteDataById(id: any) {
-    return this.httpClient.delete('http://localhost:3000/api/festival/' + id)
+  removeFriend(id: any) {
+    return this.httpClient.delete('http://localhost:3003/friends/' + id)
 
   }
+
+  getFriends() {
+    return this.httpClient.get('http://localhost:3003/friends/1')
+  }
+
 
 
 }

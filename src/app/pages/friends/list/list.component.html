@@ -1,11 +1,11 @@
 <!-- Button trigger modal -->
 <div class="festival-header">
     <div class="header-text">
-        <h3 style="font-size: 42px; font-weight: bold;">Upcoming festival artists</h3>
+        <h3 style="font-size: 42px; font-weight: bold;">Friend List</h3>
         <div style="text-align: right;">
             <button *ngIf="isAdmin === 'true'" type="button" class="btn btn-success"
                 style="margin-bottom: 20px; margin-right: 50px; " data-toggle="modal" data-target="#exampleModal">
-                Add Festival
+                Add Friend
             </button>
         </div>
     </div>
@@ -47,7 +47,7 @@
     </table>
 </div> -->
 
-<div *ngFor="let festival of festival; let i = index" style="display: inline-block;">
+<div *ngFor="let friends of friends; let i = index" style="display: inline-block;">
 
 
 
@@ -60,18 +60,18 @@
             src="https://media.nu.nl/m/a8pxozbau929_wd1280.jpg/eendaagse-festivals-vanaf-14-augustus-alleen-mogelijk-tot-750-bezoekers.jpg"
             alt="Card image cap">
         <div class="card-body">
-            <h5 class="card-title">{{festival.Naam}}</h5>
-            <p class="card-text"><strong>Date: </strong> {{festival?.Date | date: 'dd-MM-YYYY' }}</p>
-            <p class="card-text"><strong>Price: </strong> $ {{festival?.Price}}</p>
+            <h5 class="card-title">{{friends.id}}</h5>
+            <p class="card-text"><strong>email: </strong> {{friends?.email}}</p>
+
         </div>
         <div class="card-body">
             <button style="margin-right: 10px;" class="btn btn-primary"
                 style="background-color: #007bff;margin-right: 5px;"><a style="color: white;"
-                    routerLink="{{festival._id}}">Details</a></button>
+                    routerLink="{{friends.id}}">Details</a></button>
             <button *ngIf="isAdmin === 'true'" style="margin-right: 10px;" class="btn btn-primary"
-                style="background-color: #007bff;margin-right: 5px;"><a [routerLink]="['edit', festival._id]"
+                style="background-color: #007bff;margin-right: 5px;"><a [routerLink]="['edit', friends.id]"
                     style="background-color: #007bff;" style="color: white; margin-right: 5px;">Edit</a></button>
-            <button *ngIf="isAdmin === 'true'" class="btn btn-danger" (click)="onDelete(festival._id)"
+            <button *ngIf="isAdmin === 'true'" class="btn btn-danger" (click)="onDelete(friends.id)"
                 style="background-color: #dc3545;">Delete</button>
         </div>
     </div>
@@ -79,103 +79,6 @@
 
 
 <!-- Modal -->
-<div #childModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Festival</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <h6>Add artists</h6>
-                    <div *ngFor="let value of values; let i = index">
-                        <select type="text" [(ngModel)]="value.value" #name="ngModel" name="value{{i}}" value="val"
-                            class="form-control">
-                            <option *ngFor="let item of itemList" value="{{item.Naam}}">{{item.Naam}}</option>
-                        </select>
-                        <button style="margin: 10px;" (click)="removeValue(i)"
-                            class="btn btn-danger btn-sm">Remove</button>
-                    </div>
-                    <button (click)="addValue()" class="btn btn-success btn-sm">ADD</button>
-                </div>
-
-
-                <form (ngSubmit)="insertData()" [formGroup]="form">
-                    <div class="submit-form">
-
-                        <div class="form-group">
-                            <label for="Naam">Festival Name</label>
-                            <input type="text" formControlName="Naam" class="form-control"
-                                [ngClass]="{'is-invalid': submitted && f['Naam'].errors}" placeholder="Enter Name">
-
-                            <div *ngIf="submitted && f['Naam'].errors" class="invalid-feedback">
-                                <div *ngIf="f['Naam'].errors['required']">
-                                    Name is required
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="MaxAantalBezoekers">Max Visitors</label>
-                            <input type="number" formControlName="MaxAantalBezoekers"
-                                [ngClass]="{'is-invalid': submitted && f['MaxAantalBezoekers'].errors}"
-                                class="form-control">
-
-                            <div *ngIf="submitted && f['MaxAantalBezoekers'].errors" class="invalid-feedback">
-                                <div *ngIf="f['MaxAantalBezoekers'].errors['required']">
-                                    Max visitors is required
-                                </div>
-                                <div *ngIf="f['MaxAantalBezoekers'].errors['MaxAantalBezoekers']">
-                                    Max visitors must be valid
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="isUnderage">Underage?</label>
-                            <br>
-                            <input formControlName="isUnderage"
-                                [ngClass]="{'is-invalid': submitted && f['isUnderage'].errors}" type="checkbox">
-
-                            <div *ngIf="submitted && f['isUnderage'].errors" class="invalid-feedback">
-                                <div *ngIf="f['isUnderage'].errors['required']">
-                                    Underage is required
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Date">Date</label>
-                            <input formControlName="Date" [ngClass]="{'is-invalid': submitted && f['Date'].errors}"
-                                type="date" class="form-control">
-
-                            <div *ngIf="submitted && f['Date'].errors" class="invalid-feedback">
-                                <div *ngIf="f['Date'].errors['required']">
-                                    Date is required
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Price">Price</label>
-                            <input formControlName="Price" [ngClass]="{'is-invalid': submitted && f['Price'].errors}"
-                                type="number" class="form-control">
-
-                            <div *ngIf="submitted && f['Price'].errors" class="invalid-feedback">
-                                <div *ngIf="f['Price'].errors['required']">
-                                    Price is required
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button #closeBtn class="btn btn-dark btn-sm">Submit</button>
-                        </div>
-                        <div *ngIf="submitSucces">
-                            <h4>You added successfully!</h4>
-                        </div>
-                    </div>
-                </form>
 
 
 
@@ -193,7 +96,7 @@
 
 
 
-                <!-- <form (ngSubmit)="insertData()" [formGroup]="form">
+<!-- <form (ngSubmit)="insertData()" [formGroup]="form">
                     <div style="width: 400px; margin: auto;">
                         <div class="submit-form">
                             <div>
@@ -244,10 +147,3 @@
                         </div>
                     </div>
                 </form> -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="resetValues()">Close</button>
-            </div>
-        </div>
-    </div>
-</div>

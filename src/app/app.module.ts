@@ -41,6 +41,7 @@ import { OrderItemsComponent } from './pages/orders/order-items/order-items.comp
     OrderComponent,
     OrderItemsComponent,
 
+
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule,
     ReactiveFormsModule,

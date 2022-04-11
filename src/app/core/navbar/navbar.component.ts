@@ -86,7 +86,15 @@ import { AuthService } from 'src/app/pages/auth.service'
                 >Users</a
               >
             </li>
-            
+            <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="friends/1"
+              [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Friends</a
+            >
+          </li>
             <li class="nav-item">
               <a
                 class="nav-link"
