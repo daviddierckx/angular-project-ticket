@@ -46,22 +46,22 @@ export class FestivalService {
     return this.festival.length;
   }
   getAllFestivals() {
-    return this.httpClient.get('http://localhost:3000/api/festival')
+    return this.httpClient.get('https://avansfestivalapi.herokuapp.com/api/festival')
   }
   insertData(data: any) {
-    return this.httpClient.post('http://localhost:3000/api/festival', data)
+    return this.httpClient.post('https://avansfestivalapi.herokuapp.com/api/festival', data)
   }
 
   getDataById(id: any) {
-    return this.httpClient.get('http://localhost:3000/api/festival/' + id)
+    return this.httpClient.get('https://avansfestivalapi.herokuapp.com/api/festival/' + id)
 
   }
 
   updateData(id: any, data: any) {
-    return this.httpClient.put('http://localhost:3000/api/festival/edit/' + id, data)
+    return this.httpClient.put('https://avansfestivalapi.herokuapp.com/api/festival/edit/' + id, data)
   }
   DeleteDataById(id: any) {
-    return this.httpClient.delete('http://localhost:3000/api/festival/' + id)
+    return this.httpClient.delete('https://avansfestivalapi.herokuapp.com/api/festival/' + id)
 
   }
 

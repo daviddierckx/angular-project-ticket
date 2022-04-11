@@ -12,22 +12,22 @@ export class MyOrderService {
   constructor(private httpClient: HttpClient) { }
 
   getAllOrder() {
-    return this.httpClient.get('http://localhost:3000/api/order')
+    return this.httpClient.get('https://avansfestivalapi.herokuapp.com/api/order')
   }
   insertData(data: any) {
-    return this.httpClient.post('http://localhost:3000/api/order', data)
+    return this.httpClient.post('https://avansfestivalapi.herokuapp.com/api/order', data)
   }
 
   getDataById(id: any) {
-    return this.httpClient.get('http://localhost:3000/api/order/' + id)
+    return this.httpClient.get('https://avansfestivalapi.herokuapp.com/api/order/' + id)
 
   }
 
   updateOrder(id: any, data: any) {
-    return this.httpClient.put('http://localhost:3000/api/order/edit/' + id, data)
+    return this.httpClient.put('https://avansfestivalapi.herokuapp.com/api/order/edit/' + id, data)
   }
   DeleteDataById(id: any) {
-    return this.httpClient.delete('http://localhost:3000/api/order/' + id)
+    return this.httpClient.delete('https://avansfestivalapi.herokuapp.com/api/order/' + id)
 
   }
 

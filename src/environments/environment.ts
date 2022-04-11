@@ -8,8 +8,8 @@ export const environment = {
   production: false,
 
   // Fill in your own local development server API url here
-  apiUrl: 'https://localhost:3000',
-  SERVER_API_URL: 'https://localhost:3000/api',
+  apiUrl: 'https://avansfestivalapi.herokuapp.com',
+  SERVER_API_URL: 'https://avansfestivalapi.herokuapp.com/api',
 
   version: packagejson.version
 }

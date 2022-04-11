@@ -23,22 +23,22 @@ export class ArtiestService {
     return this.artiest.length;
   }
   getAllArtiest() {
-    return this.httpClient.get('http://localhost:3000/api/artiest')
+    return this.httpClient.get('https://avansfestivalapi.herokuapp.com/api/artiest')
   }
   insertData(data: any) {
-    return this.httpClient.post('http://localhost:3000/api/artiest', data)
+    return this.httpClient.post('https://avansfestivalapi.herokuapp.com/api/artiest', data)
   }
 
   getDataById(id: any) {
-    return this.httpClient.get('http://localhost:3000/api/artiest/' + id)
+    return this.httpClient.get('https://avansfestivalapi.herokuapp.com/api/artiest/' + id)
 
   }
   DeleteDataById(id: any) {
-    return this.httpClient.delete('http://localhost:3000/api/artiest/' + id)
+    return this.httpClient.delete('https://avansfestivalapi.herokuapp.com/api/artiest/' + id)
 
   }
   updateData(id: any, data: any) {
-    return this.httpClient.put('http://localhost:3000/api/artiest/edit/' + id, data)
+    return this.httpClient.put('https://avansfestivalapi.herokuapp.com/api/artiest/edit/' + id, data)
   }
 
   /////////////

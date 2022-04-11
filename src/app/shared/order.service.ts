@@ -23,7 +23,7 @@ export class OrderService {
       Quantity: this.orderItems[0].Quantity,
       isGift: false
     }
-    return this.http.post("http://localhost:3000/api/order", body, {
+    return this.http.post("https://avansfestivalapi.herokuapp.com/api/order", body, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
