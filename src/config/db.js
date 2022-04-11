@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+//Connect to mongo
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect("mongodb+srv://daviddierckx:Tv123456789@cluster0.gbnfj.mongodb.net/api-crud", {
