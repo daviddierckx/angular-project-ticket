@@ -15,7 +15,7 @@
   "scripts": {
     "ng": "ng",
     "start": "nodemon src/server.js",
-    "build": "ng build --prod",
+    "build": "ng build --aot",
     "pretty": "prettier --write \"./src/**/*.{ts,js,css,scss,json}\"",
     "sonar": "sonar-scanner",
     "test": "ng test --code-coverage --no-watch --no-progress --browsers=ChromeHeadlessCI",
