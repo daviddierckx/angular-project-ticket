@@ -16,12 +16,21 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', redirectTo: 'order', pathMatch: 'full' },
-      { path: 'orders', component: OrdersComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'orders', component: OrdersComponent,
+        canActivate: [AuthGuard]
+      },
       {
         path: 'order', children: [
-          { path: '', component: OrderComponent },
-          { path: 'edit/:id', component: OrderComponent }
+          {
+            path: '', component: OrderComponent,
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'edit/:id', component: OrderComponent,
+            canActivate: [AuthGuard]
+          }
         ]
       },
       { path: 'dashboard', component: DashboardComponent },
@@ -49,6 +58,7 @@ const routes: Routes = [
       {
         path: 'myorders',
         loadChildren: () => import('./pages/myorders/myorders.module').then(m => m.MyOrderModule),
+        canActivate: [AuthGuard]
 
       },
       {
