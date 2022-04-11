@@ -82,7 +82,7 @@ firebase:
     - npm i -g firebase-tools
   script:
     - npm install
-    - ng build
+    - npm run build
     - firebase deploy --token $FIREBASE_TOKEN
   only:
     - master
