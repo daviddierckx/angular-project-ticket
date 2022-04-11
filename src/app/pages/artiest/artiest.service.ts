@@ -10,9 +10,9 @@ export class ArtiestService {
   artiest: Artiest[] = [
     {
       id: 0,
-      Naam: "Dour",
-      Genre: "geen",
-      ImageUrl: "geen"
+      Naam: "Klara",
+      Genre: "Pop",
+      ImageUrl: "http://test.com"
 
 
     },
