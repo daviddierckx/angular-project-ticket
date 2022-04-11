@@ -73,7 +73,7 @@ import { AuthService } from 'src/app/pages/auth.service'
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: true }"
               tabindex="-1"
-              >Artiesten</a
+              >Artists</a
             >
           </li>
             <li class="nav-item" >
